@@ -1,0 +1,22 @@
+<div class="layout">
+  <app-header></app-header>
+
+  <div class="layout-main">
+    <div class="sidebar-container">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="content-container">
+      <main>
+        <div class="opciones-grid">
+          <a class="opcion" *ngFor="let opcion of opciones" [routerLink]="opcion.ruta">
+            <img [src]="opcion.icono" [alt]="opcion.titulo">
+            <span>{{ opcion.titulo }}</span>
+          </a>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

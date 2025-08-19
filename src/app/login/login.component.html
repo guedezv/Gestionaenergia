@@ -1,16 +1,48 @@
-<mat-card class="login-card">
-  <h2>Iniciar sesión</h2>
-  <form (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Usuario</mat-label>
-      <input matInput [(ngModel)]="username" name="username" required />
-    </mat-form-field>
+<div class="login-container">
+  <!-- Lado izquierdo -->
+  <div class="login-left">
+    <div class="background-image">
+      <!-- Usar la imagen de la carpeta 'public' -->
+      <img src="/imagen-fondo-login.svg" alt="Imagen de fondo">
+    </div>
+    <div class="content">
+      <div class="logo">
+        <img src="/logo-gestiona-energia-login.svg" alt="Logo">
+      </div>
+      <h2>
+        Hola,<br>
+        <strong>¡Bienvenid&#64;s!</strong>
+      </h2>
+    </div>
+  </div>
 
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Contraseña</mat-label>
-      <input matInput [(ngModel)]="password" name="password" type="password" required />
-    </mat-form-field>
+  <!-- Lado derecho -->
+  <div class="login-right">
+    <h2>Ingreso</h2>
 
-    <button mat-raised-button color="primary" type="submit">Entrar</button>
-  </form>
-</mat-card>
+    <form (ngSubmit)="onLoginSubmit()">
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label>Correo</mat-label>
+  <input matInput [(ngModel)]="credentials.username" name="username" required placeholder="Ingresar email">
+</mat-form-field>
+
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label>Contraseña</mat-label>
+  <input matInput type="password" [(ngModel)]="credentials.password" name="password" required placeholder="Ingresar contraseña">
+</mat-form-field>
+
+      <div class="options">
+        <mat-checkbox>Recuérdame</mat-checkbox>
+        <a href="#">¿Olvidó su contraseña?</a>
+      </div>
+
+      <div class="buttons">
+        <!-- Botón principal para "Ingresar" -->
+        <button mat-stroked-button color="primary" type="submit" class="ingresar">Ingresar</button>
+
+        <!-- Botón de contorno para "¿Nuevo usuario?" -->
+        <button mat-stroked-button color="primary">¿Nuevo usuario?</button>
+      </div>
+    </form>
+  </div>
+</div>

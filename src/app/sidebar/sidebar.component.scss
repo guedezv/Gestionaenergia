@@ -1,0 +1,199 @@
+:host {
+  display: block;
+  width: 130px;
+  background-color: #092039;
+  height: 100%;
+  transition: width 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Estilo general de los enlaces */
+a.mat-list-item {
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+a.mat-mdc-list-item {
+  height: auto;
+  padding: 5px 0 0 0;
+}
+
+/* Estilo del texto */
+span.menu-title {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 14px;
+  color: #fff;
+  line-height: 34px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.active-link .menu-title {
+  font-weight: 600;
+}
+
+/* Estilo del contenedor de cada ítem */
+.sidebar-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  padding: 12px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ícono */
+.menu-icon {
+  width: 40px;
+  height: 40px;
+  transition: background-color 0.3s ease;
+  border-radius: 50%;
+  padding: 4px;
+}
+
+img.menu-icon {
+  width: auto;
+  height: auto;
+}
+
+/* Contenedor del ícono */
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back {
+  width: 3.3em;
+  height: 2.4em;
+  border-radius: 16px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active-link .back {
+  background-color: rgba(15, 105, 196, 0.7);
+}
+
+/* Texto adicional */
+span.salir {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 16px;
+  color: #fff;
+  line-height: 0;
+  padding-right: 20px;
+}
+
+/* Corrección de color en Angular Material */
+::ng-deep .mat-mdc-list-item .mdc-list-item__primary-text {
+  color: #ffffff !important;
+}
+
+.mat-mdc-list-base a {
+  color: inherit;
+  text-align-last: center;
+}
+
+/* 📱 Tablet */
+@media (max-width: 1024px) {
+  :host {
+    width: 120px;
+  }
+
+  .menu-title {
+    font-size: 12px !important;
+    display: block;
+  }
+
+  .sidebar-link {
+    padding: 12px 8px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .icon-wrapper {
+    margin-right: 0;
+    margin-bottom: 4px;
+  }
+
+  .menu-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* 📱 Móvil */
+@media (max-width: 767px) {
+  :host {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    z-index: 1000;
+  }
+
+  mat-nav-list {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .sidebar-link {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 8px;
+  }
+
+  .icon-wrapper {
+    margin-right: 0;
+    margin-bottom: 4px;
+  }
+
+  .menu-title {
+    font-size: 10px !important;
+    display: block;
+  }
+
+  .menu-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .back {
+    width: auto;
+    height: auto;
+    background: none;
+  }
+}
+
+.mat-mdc-list-base  {
+    pointer-events: auto;
+    text-align: -webkit-center !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
