@@ -1,0 +1,37 @@
+<div class="layout">
+  <app-header></app-header>
+
+  <div class="layout-main">
+    <div class="sidebar-container">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="content-container">
+      <h5 class="titulo mb-3">Sistemas</h5>
+
+      <div class="chip-direccion">
+        <span class="i">i</span>
+        <span class="texto">, Nro. S/N, Complejo, La Serena, Región de Coquimbo (Biblioteca de la Serena - Juan José Latorre 782, La Serena)</span>
+      </div>
+
+      <ul class="tabs">
+        <li (click)="go('informacion-general')"><img src="/assets/icons/info.svg"><span>Información General</span></li>
+        <li (click)="go('energeticos')"><img src="/assets/icons/bolt.svg"><span>Energéticos</span></li>
+        <li class="active"><img src="/assets/icons/cogs.svg"><span>Sistemas</span></li>
+        <li (click)="go('actualizacion-datos-unidad')"><img src="/assets/icons/update.svg"><span>Actualización Datos Unidad</span></li>
+      </ul>
+
+      <hr class="separator" />
+
+      <div class="panel blanco">
+        <p class="placeholder">Contenido de <b>Sistemas</b> (pendiente de API/maqueta).</p>
+      </div>
+
+      <div class="acciones mt-3">
+        <a class="btn btn-secondary" [routerLink]="['/home-unidades/mi-unidad', id]">Volver</a>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,164 @@
+/* Layout base (si ya lo tienes global, puedes omitir) */
+.layout { display: flex; flex-direction: column; height: 100vh; }
+.layout-main { display: flex; flex: 1; }
+.content-container { flex: 1; padding: 2rem; overflow-y: auto; background: #fff; }
+/* Estructura base ya la tienes: .layout, .layout-main, .content-container */
+.content-container {
+  flex: 1;
+  padding: 2rem;
+  background: #fff;
+  overflow: auto;
+}
+
+.editar-servicio {
+  max-width: 980px;
+  margin: 0;
+}
+
+/* Encabezado */
+.editar-servicio h2 {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 25px;
+    color: #111111;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.editar-servicio .subtitle {
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 20px;
+}
+
+/* Formulario */
+.form-group {
+  margin-bottom: .75rem;
+}
+.form-group label {
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.form-control,
+.form-select {
+    height: 38px;
+width: -webkit-fill-available;
+    border: 1px solid rgba(0, 0, 0, 0.8705882353);
+    border-radius: 0px;
+    padding: 0 10px;
+    gap: 20px;
+}
+            .form-control::placeholder { 
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 16px;
+        color: #4D4D4D;
+        line-height: 34px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+       }
+
+
+/* fila de checks */
+.checks-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: center;
+  margin: .5rem 0 1rem;
+}
+.checks-row .check {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  font-size: .9rem;
+  color: #111;
+}
+
+/* grid de metadatos (2 columnas) */
+.meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem 1rem;
+  margin-top: .5rem;
+}
+.meta-grid .check-readonly .readonly-box {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 .5rem;
+  border: 1px solid #cfd4dc;
+  background: #f8fafc;
+}
+
+/* botones */
+.buttons {
+  display: flex;
+  gap: .5rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+.btn {
+  border: 1px solid #d0d7e1;
+  height: 36px;
+  padding: 0 .9rem;
+  border-radius: 4px;
+  background: #fff;
+}
+.btn.btn-primary {
+    align-items: center;
+    gap: 0.6rem;
+    height: 40px;
+    background: #0F69C4;
+    border-color: #0F69C4;
+    border-radius: 0px;
+    padding: 0 1rem;
+    font-weight: 600;
+    color: #fff;
+}
+.btn.btn-outline {
+    align-items: center;
+    gap: 0.6rem;
+    height: 40px;
+    background: rgba(15, 105, 196, 0);
+    border-color: #0F69C4;
+    border-radius: 0px;
+    padding: 0 1rem;
+    font-weight: 600;
+    color: #0F69C4;
+}
+
+/* alertas (si usas bootstrap ya vienen, esto es por si acaso) */
+.alert {
+  padding: .6rem .75rem;
+  border-radius: 4px;
+  margin: .5rem 0 .75rem;
+}
+.alert-info    { background: #eef6ff; color: #0f3f91; border: 1px solid #cfe2ff; }
+.alert-danger  { background: #fff1f2; color: #9f1239; border: 1px solid #fecdd3; }
+
+input.form-control {
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px !important;
+    color: #4D4D4D;
+    line-height: 34px;
+    padding-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

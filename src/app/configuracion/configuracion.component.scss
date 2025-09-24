@@ -9,8 +9,6 @@
   flex: 1;
 }
 
-
-
 .content-container {
   flex: 1;
   padding: 2rem;
@@ -20,10 +18,10 @@
 
 /* Grid de opciones */
 .opciones-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(183px, 1fr));
-    gap: 0;
-    width: 75%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(183px, 1fr));
+  gap: 1rem;
+  width: 75%;
 }
 
 .opcion {
@@ -37,48 +35,52 @@
   text-align: center;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
-
-  
 }
 
-.opcion img {
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 0.8rem;
+/* Estilos de las imágenes */
+.opcion .icon-normal {
+  display: block; /* Asegura que la imagen normal se muestre */
+  width: 31%; /* Tamaño de la imagen normal */
+  height: 31px;
+  padding-top: 15px;
+  padding-bottom: 14px;
+}
+.opcion .icon-hover {
+  display: none; /* Oculta la imagen de hover por defecto */
+  width: 60px; /* Tamaño de la imagen al hacer hover */
+  height: 60px;
+  padding-bottom: 0px;
+}
+
+/* Estado al pasar el mouse */
+.opcion.hovered .icon-normal {
+  display: none; /* Oculta la imagen normal al pasar el mouse */
+}
+.opcion.hovered .icon-hover {
+  display: block; /* Muestra la imagen de hover */
 }
 
 .opcion span {
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: #333333;
-    font-family: Roboto;
-    font-size: 14px;
-    color: #0F69C4;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #333333;
+  font-family: Roboto;
+  font-size: 14px;
+  color: #0f69c4;
 }
-
 
 /* 📱 Tablet */
 @media (max-width: 1024px) {
   .opciones-grid {
-    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(183px, 1fr));
-    gap: 0;
     width: 100%;
-}
+  }
 }
 
 /* 📱 Móvil */
 @media (max-width: 767px) {
   .opciones-grid {
-    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 0;
     width: 100%;
-}
-}
-
-.mat-mdc-list-base  {
-    pointer-events: auto;
-    text-align: -webkit-center !important;
+  }
 }

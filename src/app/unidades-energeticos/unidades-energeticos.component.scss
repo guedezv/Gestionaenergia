@@ -1,20 +1,142 @@
-.layout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
+/* ===== Layout base ===== */
+.layout { display: flex; flex-direction: column; height: 100vh; }
+.layout-main { display: flex; flex: 1; }
 
-.layout-main {
-  display: flex;
-  flex: 1;
-}
-
-
-
-.content-container {
-  flex: 1;
+/* ===== Página ===== */
+.unidades {
   padding: 2rem;
-  overflow-y: auto;
-  background: #fff;
-}
+  width: 60%;
 
+  h2 {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 25px;
+    color: #111111;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Encabezado visual */
+  .header-row {
+    display: grid;
+    grid-template-columns: 1fr 120px 160px; /* Nombre | Abrv | Acciones */
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+
+    .col-left, .col-mid, .col-right {
+      font-family: Roboto;
+      font-weight: 400;
+      font-size: 16px;
+      color: #373737;
+      line-height: 34px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .col-right { text-align: right; }
+  }
+
+  .separator {
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,0.87);
+    margin: 0.5rem 0 1rem;
+  }
+
+  /* ===== Tabla limpia con fila-chip que cubre toda la fila ===== */
+  .table-clean {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px; /* separación entre filas tipo tarjeta */
+
+    tbody tr { background: transparent; }
+
+    td {
+      border: 0;
+      padding: 0;
+      vertical-align: middle;
+    }
+
+    /* Un solo TD por fila que contiene todo el layout de las 3 "columnas" */
+    .col-full { width: 100%; }
+
+    /* La fila visual (chip): grid de 3 columnas */
+    .row-chip {
+      display: grid;
+      grid-template-columns: 1fr 120px 160px; /* Nombre | Abrv | Acciones */
+      align-items: center;
+      gap: .75rem;
+
+      background: #ffffff; /* base (pares) */
+      color: #373737;
+      border-radius: 0px;
+      padding: 0.65rem 0.8rem;
+      transition: background 0.15s ease, box-shadow 0.15s ease;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.3;
+
+      &:hover {
+        background: #f6fafe;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+    }
+
+    /* Zebra (impares con azul suave) */
+    tr.alt .row-chip { background: #CFE1F3; }
+    tr.alt .row-chip:hover { background: #dbe9ff; }
+
+    /* Celdas internas del chip */
+    .cell-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .cell-abrv { text-align: left; }
+    .cell-actions { display: flex; justify-content: flex-end; gap: .5rem; }
+
+    /* Botones */
+    .btn {
+      border-radius: 999px;
+      font-weight: 700;
+      padding: 0.42rem 0.8rem;
+      line-height: 1;
+      border: 1px solid transparent;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .btn-edit { background: #0F69C4; border-color: #0F69C4; color: #fff; }
+    .btn-delete { background: #eef3ff; border-color: #cfe0ff; color: #1f3fa3; }
+    .btn-edit:hover { filter: brightness(0.95); }
+    .btn-delete:hover { background: #e3ecff; }
+  }
+
+  /* Botonera inferior (alineada a la derecha) */
+  .bottom-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: .5rem;
+    margin-top: 1rem;
+
+    .btn-create {
+      align-items: center;
+      gap: .6rem;
+      height: 40px;
+      background: #0F69C4;
+      border-color: #0F69C4;
+      border-radius: 0;
+      padding: 0 1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+    .btn.btn-secondary {
+      align-items: center;
+      gap: .6rem;
+      height: 40px;
+      background: transparent;
+      border-color: #0F69C4;
+      border-radius: 0;
+      padding: 0 1rem;
+      font-weight: 600;
+      color: #0F69C4;
+    }
+  }
+}

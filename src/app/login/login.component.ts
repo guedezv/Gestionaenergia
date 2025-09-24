@@ -40,29 +40,51 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   // Método que se ejecuta cuando el usuario hace clic en el botón de login
-  onLoginSubmit(): void {
-    console.log('Botón de Ingresar clickeado'); // Agrega esta línea
-    console.log('Credenciales:', this.credentials);
-    // Restablece el error antes de un nuevo intento
-    this.loginError = false;
-    
-    // Llama al método 'login' de nuestro servicio
-    this.authService.login(this.credentials).subscribe({
-      next: (response) => {
-        console.log('Login exitoso', response);
+onLoginSubmit(): void {
+  this.loginError = false;
 
-        // Guarda el token de acceso que devuelve el backend
-        localStorage.setItem('access_token', response.access_token);
-        
-        // **IMPORTANTE**: La ruta '/dashboard' debe existir en tu configuración de rutas de Angular
-        this.router.navigate(['/home-unidades']); 
-      },
-      error: (error) => {
-        console.error('Error en el login', error);
-        
-        // Si hay un error, actualiza la variable para mostrar el mensaje de error en la vista
-        this.loginError = true;
+  this.authService.login(this.credentials).subscribe({
+    next: (res) => {
+      // 1) token del swagger
+      const token = res?.access_token;
+      if (token) localStorage.setItem('access_token', token);
+
+      // 2) user_id preferente desde la respuesta
+      let userId: string | null | undefined = res?.user?.id;
+
+      // 3) fallback: decodificar el JWT si no vino el user.id
+      if (!userId && token) {
+        const parseJwt = (t: string) => {
+          try {
+            const base64 = t.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+            const json = atob(base64);
+            return JSON.parse(
+              decodeURIComponent(
+                Array.prototype.map
+                  .call(json, (c: string) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+                  .join('')
+              )
+            );
+          } catch {
+            return null;
+          }
+        };
+        const payload = parseJwt(token);
+        userId = payload?.user_id ?? payload?.uid ?? payload?.sub ?? payload?.id ?? null;
       }
-    });
-  }
+
+      if (userId != null) {
+        localStorage.setItem('user_id', String(userId));
+      }
+
+      this.router.navigate(['/home-unidades']);
+    },
+    error: (err) => {
+      console.error('Error en el login', err);
+      this.loginError = true;
+      // opcional: mostrar err?.error?.detail en la UI
+    }
+  });
+}
+
 }

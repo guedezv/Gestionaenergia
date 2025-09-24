@@ -1,0 +1,84 @@
+<div class="layout">
+  <app-header></app-header>
+
+  <div class="layout-main">
+    <div class="sidebar-container">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="container mt-4 editar-energetico">
+        <h2>Editar {{ form.Nombre || 'energético' }}</h2>
+
+      <div *ngIf="loading" class="alert alert-info">Cargando…</div>
+      <div *ngIf="!loading && error" class="alert alert-danger">{{ error }}</div>
+
+      <form *ngIf="!loading" (ngSubmit)="guardar()">
+        <!-- Línea 1: Nombre / Icono -->
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input class="form-control" type="text" [(ngModel)]="form.Nombre" name="Nombre" />
+          </div>
+
+          <div class="form-group">
+            <label>Icono</label>
+            <input class="form-control" type="text" [(ngModel)]="form.Icono" name="Icono"
+                   placeholder="ej: ge-energetico-biomasa.png" />
+            <div class="file-row">
+              <label class="link" for="iconFile">Cargar archivo</label>
+              <input id="iconFile" type="file" (change)="onFilePicked($event)" hidden />
+              <span class="file-name" *ngIf="iconFileName || form.Icono">{{ iconFileName || form.Icono }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Línea 2: Posicion -->
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Posición</label>
+            <input class="form-control" type="number" [(ngModel)]="form.Posicion" name="Posicion" min="0" />
+          </div>
+          <div></div>
+        </div>
+
+        <!-- Línea 3: Flags (todos los del swagger) -->
+        <div class="flags-block">
+          <label class="flags-title">Opciones</label>
+          <div class="flags-grid">
+            <label class="check">
+              <input type="checkbox" [(ngModel)]="form.Multiple" name="Multiple" />
+              <span>Multiple</span>
+            </label>
+
+            <label class="check">
+              <input type="checkbox" [(ngModel)]="form.PermiteMedidor" name="PermiteMedidor" />
+              <span>Permite medidor</span>
+            </label>
+
+            <label class="check">
+              <input type="checkbox" [(ngModel)]="form.PermitePotenciaSuministrada" name="PermitePotenciaSuministrada" />
+              <span>Permite potencia suministrada</span>
+            </label>
+
+            <label class="check">
+              <input type="checkbox" [(ngModel)]="form.PermiteTipoTarifa" name="PermiteTipoTarifa" />
+              <span>Permite tipo tarifa</span>
+            </label>
+
+            <label class="check">
+              <input type="checkbox" [(ngModel)]="form.Active" name="Active" />
+              <span>Activo</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button class="btn btn-primary" type="submit" [disabled]="saving">Guardar</button>
+          <button class="btn btn-outline" type="button" (click)="volver()">Volver</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

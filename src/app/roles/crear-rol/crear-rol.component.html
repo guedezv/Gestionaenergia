@@ -1,0 +1,39 @@
+<div class="layout">
+  <app-header></app-header>
+
+  <div class="layout-main">
+    <div class="sidebar-container">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="container mt-4 crear-rol">
+      <h2>{{ roleId != null ? 'Renombrar rol' : 'Crear rol' }}</h2>
+
+      <div *ngIf="loading" class="alert alert-info">Cargando…</div>
+      <div *ngIf="!loading && error" class="alert alert-danger">{{ error }}</div>
+
+      <form *ngIf="!loading" (ngSubmit)="guardar()">
+        <div class="form-group">
+          <label>Nombre del rol</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="nombre"
+            name="Nombre"
+            required
+            placeholder="Ej: Administrador"
+          />
+        </div>
+
+        <div class="buttons">
+          <button type="submit" class="btn btn-primary" [disabled]="saving">
+            {{ roleId != null ? 'Guardar cambios' : 'Crear rol' }}
+          </button>
+          <button type="button" class="btn btn-outline" (click)="volver()">Volver</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

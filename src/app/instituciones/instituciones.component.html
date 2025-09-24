@@ -1,18 +1,121 @@
 <div class="layout">
+  <!-- Header -->
   <app-header></app-header>
 
   <div class="layout-main">
+    <!-- Sidebar -->
     <div class="sidebar-container">
       <app-sidebar></app-sidebar>
     </div>
 
-    <div class="content-container">
-      <main>
-        <h2>Instituciones</h2>
-        <p>Aquí irá la gestión de instituciones.</p>
-      </main>
+    <!-- Contenido principal -->
+    <div class="container mt-4 instituciones">
+      <!-- Título -->
+      <h2>Instituciones</h2>
+
+      <!-- Filtro -->
+      <div class="filter-block">
+        <label class="filter-label">Filtrar por nombre</label>
+        <div class="filter-line">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ingresar nombre"
+            [(ngModel)]="filtro"
+          />
+          <button class="btn btn-primary btn-filter" (click)="aplicarFiltro()">
+            Filtrar <img src="/../icono-btn-filtrar.svg" alt="Icono de filtro" class="btn-icon">
+          </button>
+
+
+        </div>
+      </div>
+
+      <!-- Encabezados visuales -->
+      <div class="header-row">
+        <span class="col-left">Nombres</span>
+        <span class="col-right">Acciones</span>
+      </div>
+      <hr class="separator" />
+
+      <!-- Tabla (estilizada como lista) -->
+      <table class="table table-clean">
+        <tbody>
+          <tr *ngFor="let inst of institucionesPaginadas">
+            <td class="col-nombre">
+              <div class="row-chip">
+                {{ inst.Nombre }}
+              <div class="actions">
+                <button
+                  class="btn btn-sm btn-edit"
+                  (click)="editarInstitucion(inst)">
+                  Editar
+                </button>
+
+                <!-- Switch tipo Material para activar/desactivar -->
+                <mat-slide-toggle
+                  class="ms-2"
+                  [checked]="!!inst.Active"
+                  [disabled]="togglingId === inst.Id"
+                  (change)="onToggleActivo(inst, $event.checked)">
+                  {{ inst.Active ? '' : '' }}
+                </mat-slide-toggle>
+              </div>
+              </div>
+            </td>
+
+
+          </tr>
+
+          <!-- Vacío -->
+          <tr *ngIf="!institucionesPaginadas?.length">
+            <td colspan="2" class="empty">
+              No hay instituciones para mostrar.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="uni">
+      <!-- Paginación -->
+      <nav *ngIf="totalPaginas > 1" class="paginacion">
+        <ul class="pagination">
+          <li class="page-item" [class.disabled]="paginaActual === 1">
+            <button class="page-link" (click)="cambiarPagina(paginaActual - 1)">
+              <
+            </button>
+          </li>
+
+          <li
+            class="page-item"
+            *ngFor="let _ of [].constructor(totalPaginas); let i = index"
+            [class.active]="paginaActual === (i + 1)">
+            <button class="page-link" (click)="cambiarPagina(i + 1)">
+              {{ i + 1 }}
+            </button>
+          </li>
+
+          <li class="page-item" [class.disabled]="paginaActual === totalPaginas">
+            <button class="page-link" (click)="cambiarPagina(paginaActual + 1)">
+              >
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Botones finales -->
+      <div class="bottom-actions">
+        <button class="btn btn-primary btn-create" (click)="crearNuevaInstitucion()">
+          Crear nueva
+        </button>
+
+        <button class="btn btn-secondary" (click)="volver()">
+          Volver
+        </button>
+      </div>
+      </div>
     </div>
   </div>
 
+  <!-- Footer -->
   <app-footer></app-footer>
 </div>

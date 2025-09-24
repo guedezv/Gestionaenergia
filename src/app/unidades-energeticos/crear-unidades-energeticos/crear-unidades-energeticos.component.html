@@ -1,0 +1,50 @@
+<div class="layout">
+  <app-header></app-header>
+
+  <div class="layout-main">
+    <div class="sidebar-container">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="container mt-4 crear-unidad">
+      <h2>Crear Unidad de Medida</h2>
+
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+      <form (ngSubmit)="guardar()">
+        <div class="grid">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="nombre"
+              name="Nombre"
+              required
+              placeholder="Ej: Litro"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Abrv</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="abrev"
+              name="Abrev"
+              placeholder="Ej: lt"
+            />
+            <small class="help">* El backend de creación actualmente solo recibe “Nombre”.</small>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button type="submit" class="btn btn-primary" [disabled]="saving">Guardar</button>
+          <button type="button" class="btn btn-outline" (click)="volver()">Volver</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

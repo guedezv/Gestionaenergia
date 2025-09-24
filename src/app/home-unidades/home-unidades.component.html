@@ -1,23 +1,79 @@
 <div class="layout">
+  <!-- Header -->
   <app-header></app-header>
 
   <div class="layout-main">
+    <!-- Sidebar -->
     <div class="sidebar-container">
       <app-sidebar></app-sidebar>
     </div>
 
+    <!-- Contenido principal -->
     <div class="content-container">
-      <main>
-        <h2>Lista de Unidades</h2>
+      <main class="mis-unidades">
 
-        <div *ngFor="let unidad of unidades">
-          <mat-checkbox [(ngModel)]="unidad.activa">
-            {{ unidad.nombre }}
-          </mat-checkbox>
+        <h5 class="titulo mb-3">Mis Unidades</h5>
+
+        <!-- Filtro -->
+        <div class="row align-items-center g-2 mb-3">
+          <div class="col-12 col-sm-6 col-lg-4">
+            <label class="filtro-label">Filtrar por nombre</label>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 pt-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Nombre</mat-label>
+              <input matInput [formControl]="filtroCtrl" placeholder="Buscar..." />
+            </mat-form-field>
+          </div>
         </div>
+
+        <div class="row encabezado">
+          <div class="col-12">Unidades</div>
+        </div>
+
+        <hr class="separator" />
+
+        <!-- Lista -->
+        <ul class="lista list-unstyled">
+          <li
+            class="item"
+            *ngFor="let u of paginaActual()"
+            (click)="openUnidad(u.id)"
+            style="cursor: pointer;"
+          >
+            <span class="texto">{{ u.nombre }}</span>
+          </li>
+
+          <li class="item sin-resultados" *ngIf="paginaActual().length === 0">
+            No se encontraron unidades.
+          </li>
+        </ul>
+
+        <!-- Paginación -->
+        <nav class="paginacion d-flex align-items-center gap-2 mt-3" aria-label="Paginación">
+          <button class="btn btn-sm btn-light" (click)="first()" [disabled]="pageIndex() === 0">«</button>
+          <button class="btn btn-sm btn-light" (click)="prev()" [disabled]="pageIndex() === 0">‹</button>
+
+          <ul class="pages list-unstyled d-flex gap-1 mb-0">
+            <li *ngFor="let _ of [].constructor(totalPages()); let i = index">
+              <button
+                class="page btn btn-sm"
+                [class.active]="i === pageIndex()"
+                (click)="goToPage(i)"
+              >
+                {{ i + 1 }}
+              </button>
+            </li>
+          </ul>
+
+          <button class="btn btn-sm btn-light" (click)="next()" [disabled]="pageIndex() >= totalPages() - 1">›</button>
+          <button class="btn btn-sm btn-light" (click)="last()" [disabled]="pageIndex() >= totalPages() - 1">»</button>
+        </nav>
+
       </main>
     </div>
   </div>
 
+  <!-- Footer -->
   <app-footer></app-footer>
 </div>

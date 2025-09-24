@@ -1,20 +1,193 @@
-.layout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
+/* ===== Layout base (si ya lo tienes global, puedes omitir) ===== */
+.layout { display: flex; flex-direction: column; height: 100vh; }
+.layout-main { display: flex; flex: 1; }
 
-.layout-main {
-  display: flex;
-  flex: 1;
-}
+/* Sidebar contenedor (si aplica en tu layout) */
+.sidebar-container { border-right: 1px solid #e5e7eb; background: #f9fafb; }
 
-
-
+/* ===== Contenido principal ===== */
 .content-container {
   flex: 1;
+  background: #ffffff;
   padding: 2rem;
   overflow-y: auto;
-  background: #fff;
 }
 
+/* ===== Página Home Unidades (mismo look&feel que Instituciones) ===== */
+.mis-unidades {
+  width: 60%;
+
+  /* Título */
+  .titulo {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 25px;
+    color: #111111;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: .5rem;
+  }
+
+  /* Bloque de filtro (equivalente a .filter-block) */
+  .filtro-label {
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Angular Material – input con borde y radios 0 como en el resto */
+  :host ::ng-deep .mat-mdc-form-field {
+    --mdc-outlined-text-field-outline-color: #000000DE;
+    --mdc-outlined-text-field-focus-outline-color: #0F69C4;
+  }
+  :host ::ng-deep .mat-mdc-text-field-wrapper {
+    border-radius: 0px !important;
+    background: #ffffff;
+  }
+  :host ::ng-deep .mdc-notched-outline__leading,
+  :host ::ng-deep .mdc-notched-outline__trailing {
+    border-color: #000000DE !important;
+  }
+  :host ::ng-deep .mat-mdc-form-field-infix input::placeholder {
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #4D4D4D;
+  }
+
+  /* Encabezado “Unidades” + separador (como en Instituciones) */
+  .encabezado {
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 2px;
+  }
+  .separator {
+    border: 0;
+    border-top: 1px solid #000000DE;
+    margin: .5rem 0 1rem;
+  }
+
+  /* ===== Lista con “chips de fila” (equivalente a .table-clean .row-chip) ===== */
+  /* Lista de unidades con zebra */
+.lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  /* Base: sin color (blanco) */
+  .item {
+    background: #ffffff;            /* fila sin sombreado */
+    color: #373737;
+    border-radius: 0px;
+    padding: 0.65rem 0.8rem;
+    transition: background .15s ease, box-shadow .15s ease;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 0;
+    margin-bottom: 8px;
+
+    /* Hover para fila blanca */
+    &:hover {
+      background: #f6fafe;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+  }
+
+  /* Fila 1,3,5,... con azul suave */
+  .item:nth-child(odd) {
+    background: #CFE1F3;
+  }
+
+  /* Hover para fila azul */
+  .item:nth-child(odd):hover {
+    background: #dbe9ff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+
+  /* Estado vacío */
+  .sin-resultados {
+    background: #f6f7f9 !important;
+    color: #6b7280;
+    border: 1px dashed #dcdcdc;
+    border-radius: 8px;
+    text-align: center;
+  }
+}
+
+
+  /* ===== Paginación (idéntica a “Instituciones”) ===== */
+  .paginacion {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5rem;
+    margin-top: .5rem;
+
+    /* Botones « ‹ › » */
+    .btn.btn-light {
+      border: 0;
+      background: #fff;
+      color: #0F69C4;
+      padding: .3rem .55rem;
+      border-radius: 6px;
+
+      &:disabled {
+        color: #9aa0a6 !important;
+        background: #f3f4f6 !important;
+        pointer-events: none;
+      }
+    }
+
+    /* Números de página */
+    ul.pages {
+      list-style: none !important;
+      padding-left: 0 !important;
+      margin: 0;
+      display: flex;
+      gap: .25rem;
+
+      li { list-style: none !important; }
+
+      .page.btn {
+        border: 0;
+        background: #fff;
+        color: #0F69C4;
+        padding: .3rem .55rem;
+        border-radius: 6px;
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &.active {
+          background: #0F69C4;
+          color: #fff;
+          border-radius: 2px;
+        }
+      }
+    }
+  }
+}
+
+/* Seguridad extra por si algún navegador mete ::marker */
+.paginacion .pages > li::marker { content: "" !important; }

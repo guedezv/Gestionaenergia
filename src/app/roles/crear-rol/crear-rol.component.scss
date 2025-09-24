@@ -1,0 +1,110 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.layout-main { display: flex; flex: 1; }
+.container.crear-rol { padding: 2rem; width: 100%; }
+
+h2 {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 25px;
+  color: #111111;
+  line-height: 34px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .form-control {
+    height: 38px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.8705882353);
+    border-radius: 0px;
+    padding: 0 10px;
+  }
+  ::placeholder {
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #4D4D4D;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: .5rem;
+  margin-top: 2rem;
+
+  .btn {
+    border-radius: 6px;
+    padding: .5rem .9rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    align-items: center;
+    gap: 0.6rem;
+    height: 40px;
+    background: #0F69C4;
+    border-color: #0F69C4;
+    border-radius: 0px;
+    padding: 0 1rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .btn-outline {
+    align-items: center;
+    gap: 0.6rem;
+    height: 40px;
+    background: rgba(15, 105, 196, 0);
+    border-color: #0F69C4;
+    border-radius: 0px;
+    padding: 0 1rem;
+    font-weight: 600;
+    color: #0F69C4;
+  }
+}
+
+.alert {
+  padding: .6rem .8rem;
+  border-radius: 6px;
+  margin-bottom: .75rem;
+  &.alert-info { background: #e8f1ff; color: #0F69C4; }
+  &.alert-danger { background: #ffe9e9; color: #b42318; }
+}
+
+input.form-control {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 16px !important;
+  color: #4D4D4D;
+  line-height: 34px;
+  padding-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

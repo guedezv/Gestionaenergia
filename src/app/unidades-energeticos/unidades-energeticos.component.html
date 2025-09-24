@@ -6,11 +6,51 @@
       <app-sidebar></app-sidebar>
     </div>
 
-    <div class="content-container">
-      <main>
-        <h2>Unidades Energéticos</h2>
-        <p>Aquí irá la gestión de las Unidades Energéticos.</p>
-      </main>
+    <div class="container mt-4 unidades">
+      <h2>Unidades de Medidas Energéticas</h2>
+
+      <div *ngIf="loading" class="alert alert-info">Cargando…</div>
+      <div *ngIf="!loading && error" class="alert alert-danger">{{ error }}</div>
+
+      <ng-container *ngIf="!loading && !error">
+<!-- Encabezados + separador -->
+<div class="header-row">
+  <span class="col-left">Nombre</span>
+  <span class="col-mid">Abrv</span>
+  <span class="col-right">Acciones</span>
+</div>
+<hr class="separator" />
+
+<!-- Tabla -->
+<table class="table table-clean" *ngIf="unidades?.length; else vacio">
+  <tbody>
+    <tr *ngFor="let u of unidades; let i = index" [class.alt]="i % 2 === 1">
+      <!-- ✅ Un solo TD que contiene el chip completo -->
+      <td class="col-full">
+        <div class="row-chip">
+          <div class="cell-name">{{ u.Nombre || '—' }}</div>
+          <div class="cell-abrv">{{ u.Abreviatura || '—' }}</div>
+          <div class="cell-actions">
+            <button class="btn btn-sm btn-edit" (click)="editarUnidad(u)">Editar</button>
+            <button class="btn btn-sm btn-delete" (click)="eliminarUnidad(u)">Eliminar</button>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #vacio>
+  <div class="alert alert-warning">No hay unidades para mostrar.</div>
+</ng-template>
+
+<!-- Botonera inferior -->
+<div class="bottom-actions">
+  <button class="btn btn-primary btn-create" (click)="crearNuevaUnidad()">Crear nuevo</button>
+  <button class="btn btn-secondary" (click)="volver()">Volver</button>
+</div>
+
+      </ng-container>
     </div>
   </div>
 

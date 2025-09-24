@@ -1,0 +1,164 @@
+/* Layout base (si ya lo tienes global, puedes omitir) */
+.layout { display: flex; flex-direction: column; height: 100vh; }
+.layout-main { display: flex; flex: 1; }
+.content-container { flex: 1; padding: 2rem; overflow-y: auto; background: #fff; }
+
+/* ===== Estética Crear Servicio (alineada a tus otras vistas) ===== */
+.crear-servicio {
+  h2 {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 25px;
+    color: #111111;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .form {
+    max-width: auto;
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+
+    .form-label {
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+
+    .form-control {
+    height: 38px;
+    width: auto;
+    border: 1px solid rgba(0, 0, 0, 0.8705882353);
+    border-radius: 0px;
+    padding: 0 10px;
+
+      &::placeholder { 
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 16px;
+        color: #4D4D4D;
+        line-height: 34px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+       }
+      &:focus {
+        outline: none;
+        border-color: #2f6fea;
+        box-shadow: 0 0 0 3px rgba(47,111,234,.15);
+      }
+    }
+
+    .error {
+      font-size: .8rem;
+      color: #b91c1c;
+      font-weight: 600;
+    }
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .9rem;
+
+    @media (max-width: 768px) { grid-template-columns: 1fr; }
+  }
+
+  .checkbox-row {
+    display: flex; align-items: center; gap: .5rem;
+    .form-check { width: 16px; height: 16px; accent-color: #2f6fea; }
+    .checkbox-label { 
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #4D4D4D;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;   
+     }
+  }
+
+  .separator {
+    border: 0; border-top: 1px solid #dcdcdc; margin: 1rem 0 .75rem;
+  }
+
+  .actions {
+    display: flex; justify-content: flex-end; gap: .5rem; margin-top: 2rem;
+
+    .btn {
+      min-height: 32px; padding: .35rem .8rem; font-weight: 600;
+      border-radius: 4px; border: 1px solid transparent; line-height: 1; cursor: pointer;
+    }
+    .btn-primary  { 
+        align-items: center;
+    gap: 0.6rem;
+    height: 40px;
+    background: #0F69C4;
+    border-color: #0F69C4;
+    border-radius: 0px;
+    padding: 0 1rem;
+    font-weight: 600;
+    color: #fff;
+     }
+
+  .btn-outline  { 
+    align-items: center;
+    gap: 0.6rem;
+    height: 40px;
+    background: rgba(15, 105, 196, 0);
+    border-color: #0F69C4;
+    border-radius: 0px;
+    padding: 0 1rem;
+    font-weight: 600;
+    color: #0F69C4;
+   }
+
+  }
+}
+
+.crear-servicio {
+  .form-select {
+    height: 39px;
+    width: auto;
+    border: 1px solid rgba(0, 0, 0, 0.8705882353);
+    border-radius: 0px;
+    padding: 0 10px;
+
+    &:focus {
+      outline: none;
+      border-color: #2f6fea;
+      box-shadow: 0 0 0 3px rgba(47,111,234,.15);
+    }
+
+    &:disabled {
+      background: #f5f6f8;
+      color: #6b7280;
+      cursor: not-allowed;
+    }
+  }
+  .form-select option, .form-select{
+        font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #4D4D4D;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: auto;
+  }
+  .hint { font-size: .8rem; color: #6b7280; }
+}

@@ -1,20 +1,148 @@
-.layout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
+/* ===== Layout base ===== */
+.layout { display: flex; flex-direction: column; height: 100vh; }
+.layout-main { display: flex; flex: 1; }
 
-.layout-main {
-  display: flex;
-  flex: 1;
-}
-
-
-
-.content-container {
-  flex: 1;
+/* ===== Página Inmuebles ===== */
+.inmuebles {
   padding: 2rem;
-  overflow-y: auto;
-  background: #fff;
-}
 
+  h2 {
+    font-family: Roboto, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    color: #111;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Filtros */
+  .filter-block {
+    margin-bottom: 1rem;
+
+    .filter-title {
+      font-weight: 700;
+      font-size: 16px;
+      color: #373737;
+      display: inline-block;
+      margin-bottom: .25rem;
+    }
+
+    .filter-line {
+      display: grid;
+      grid-template-columns: 1fr 220px 220px auto;
+      gap: .4rem;
+      align-items: center;
+
+      .form-control, .form-select {
+        height: 41px;
+        border: 1px solid #000000DE;
+        border-radius: 0;
+        padding: 0 10px;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 16px;
+        color: #4D4D4D;
+      }
+
+      .btn-filter {
+        display: inline-flex; align-items: center; gap: .6rem;
+        height: 41px; background: #0F69C4; border-color: #0F69C4; border-radius: 0;
+        padding: 0 1rem; font-weight: 600; color: #fff;
+      }
+    }
+  }
+
+  /* Encabezado y separador */
+  .header-row {
+    display: grid;
+    grid-template-columns: 80px 180px 1fr 1.5fr 180px;
+    font-size: .9rem;
+    color: #6b7280;
+    margin-top: .25rem;
+
+    .col-actions { text-align: right; }
+  }
+
+  .separator {
+    border: 0; border-top: 1px solid rgba(0,0,0,.54);
+    margin: .5rem 0 1rem;
+  }
+
+  /* Tabla estilo lista con zebra */
+  .table-clean {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    background: transparent;
+
+    tbody tr { background: transparent; }
+    td { border: 0; padding: 0; vertical-align: middle; }
+
+    .col-id { width: 80px; }
+    .col-tipo { width: 180px; }
+    .col-nombre { width: 1fr; }
+    .col-dir { width: 1.5fr; }
+    .col-actions { width: 180px; text-align: right; }
+
+    &.zebra tbody tr td { background: #fff; }
+    &.zebra tbody tr.alt td { background: #CFE1F3; }
+
+    .row-chip {
+      padding: .65rem .8rem;
+      color: #373737;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 26px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .row-chip-actions { display: flex; justify-content: flex-end; }
+
+    .actions {
+      display: flex; justify-content: flex-end; gap: .5rem; padding-right: .5rem;
+
+      .btn {
+        border-radius: 999px; font-weight: 700; padding: 0.42rem 0.8rem;
+        line-height: 1; border: 1px solid transparent; font-size: 14px; cursor: pointer;
+      }
+      .btn-edit   { background: #0F69C4; border-color: #0F69C4; color: #fff; }
+      .btn-delete { background: #eef3ff; border-color: #cfe0ff; color: #1f3fa3; }
+      .btn-edit:hover   { filter: brightness(0.95); }
+      .btn-delete:hover { background: #e3ecff; }
+    }
+
+    .empty {
+      padding: 1rem; text-align: center; color: #6b7280;
+      border: 1px dashed #dcdcdc; border-radius: 8px;
+    }
+  }
+
+  /* Pie: paginación + botones */
+  .footer-bar {
+    display: flex; justify-content: space-between; align-items: center; margin-top: .75rem;
+  }
+  .paginacion {
+    display: flex;
+    .pagination { list-style: none; padding-left: 0; display: flex; gap: .25rem; margin: 0; }
+    .page-link {
+      border: 0; color: #0F69C4; padding: .3rem .55rem; border-radius: 6px; background: #fff; font-family: Roboto; font-size: 16px;
+    }
+    .page-item.active .page-link { background: #0F69C4; color: #fff; border-radius: 2px; }
+    .page-item.disabled .page-link { color: #9aa0a6; background: #f3f4f6; pointer-events: none; }
+  }
+
+  .bottom-actions {
+    display: flex; gap: .5rem;
+    .btn-create {
+      align-items: center; gap: .6rem; height: 40px; background: #0F69C4; border-color: #0F69C4;
+      border-radius: 0; padding: 0 1rem; font-weight: 600; color: #fff;
+    }
+    .btn.btn-secondary {
+      align-items: center; gap: .6rem; height: 40px; background: transparent; border-color: #0F69C4;
+      border-radius: 0; padding: 0 1rem; font-weight: 600; color: #0F69C4;
+    }
+  }
+}

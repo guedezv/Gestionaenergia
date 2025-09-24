@@ -1,0 +1,101 @@
+/* ===== Layout base ===== */
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.layout-main {
+  display: flex;
+  flex: 1;
+}
+
+/* ===== Crear Unidad ===== */
+.crear-unidad {
+  padding: 2rem;
+  width: 60%;
+
+  h2 {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 25px;
+    color: #111111;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    }
+
+    .form-control {
+    height: 38px;
+    width: 97%;
+    border: 1px solid rgba(0, 0, 0, 0.8705882353);
+    border-radius: 0px;
+    padding: 0 10px;
+    }
+          ::placeholder { 
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 16px;
+        color: #4D4D4D;
+        line-height: 34px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+       }
+
+    .help {
+      margin-top: .3rem;
+      font-size: 12px;
+      color: #6b7280;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: .5rem;
+    margin-top: 1rem;
+
+    .btn-primary {
+      background: #0F69C4;
+      border-color: #0F69C4;
+      color: #fff;
+      border-radius: 0;
+      height: 40px;
+      padding: 0 1rem;
+      font-weight: 600;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #0F69C4;
+      border: 1px solid #0F69C4;
+      border-radius: 0;
+      height: 40px;
+      padding: 0 1rem;
+      font-weight: 600;
+    }
+  }
+}

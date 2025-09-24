@@ -1,0 +1,149 @@
+<div class="layout">
+  <app-header></app-header>
+
+  <div class="layout-main">
+    <div class="sidebar-container">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="content-container miu energeticos">
+      <!-- Título -->
+      <h5 class="titulo mb-3">Energéticos</h5>
+
+      <!-- Chip contextual (opcional) -->
+      <div class="chip mb-3" *ngIf="divisionId">
+        <span class="chip-icon">i</span>
+        <span class="chip-text">División: {{ divisionId }}</span>
+      </div>
+
+      <!-- ===== NAV Mi Unidad (igual al resto) ===== -->
+      <ul class="miu-nav">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'informacion-general']">
+            <span class="ico" aria-hidden="true"></span>
+            <span class="lbl">Información General</span>
+          </a>
+        </li>
+        <li class="active">
+          <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'energeticos']">
+            <span class="ico" aria-hidden="true"></span>
+            <span class="lbl">Energéticos</span>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'sistemas']">
+            <span class="ico" aria-hidden="true"></span>
+            <span class="lbl">Sistemas</span>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'actualizacion-datos-unidad']">
+            <span class="ico" aria-hidden="true"></span>
+            <span class="lbl">Actualización Datos Unidad</span>
+          </a>
+        </li>
+      </ul>
+      <!-- ===== /NAV ===== -->
+
+      <!-- ===== PANEL ===== -->
+      <div class="panel">
+        <!-- Filtros -->
+        <div class="filter-block">
+          <label class="filter-label">Filtrar por nombre</label>
+          <div class="filter-line">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Ingresar nombre"
+              [(ngModel)]="q"
+              (keyup.enter)="aplicarFiltro()"
+            />
+            <button class="btn btn-primary btn-filter" (click)="aplicarFiltro()">
+              Filtrar
+              <img src="/../icono-btn-filtrar.svg" alt="Icono de filtro" class="btn-icon">
+            </button>
+          </div>
+        </div>
+
+        <!-- Encabezados -->
+        <div class="header-row">
+          <span class="col-left">Energéticos</span>
+          <span class="col-mid">Fuente Energética</span>
+          <span class="col-mid">Encendido / Apagado</span>
+          <span class="col-right">Configurar</span>
+        </div>
+        <hr class="separator" />
+
+        <!-- Tabla / lista -->
+        <table class="table table-clean zebra">
+          <tbody>
+            <tr *ngFor="let e of energeticosPaginados(); let i = index" [class.alt]="i % 2 === 0">
+              <td>
+                <div class="row-chip">
+                  <div class="col col-nombre">
+                    <span class="ico-square" aria-hidden="true"></span>
+                    <span class="txt">{{ e.Nombre }}</span>
+                  </div>
+
+                  <div class="col col-fuente">
+                    {{ e.Nombre }}
+                  </div>
+
+                  <div class="col col-switch">
+                    <label class="switch" [attr.aria-label]="toggleAria(e)">
+                      <input type="checkbox" [checked]="e.Active" disabled />
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+
+                  <div class="col col-actions">
+                    <button class="btn btn-sm btn-edit" *ngIf="e.PermiteMedidor" disabled>
+                      Medidores
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr *ngIf="!energeticosPaginados().length && !loading()">
+              <td class="empty">No hay energéticos para mostrar.</td>
+            </tr>
+            <tr *ngIf="loading()">
+              <td class="empty">Cargando...</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Paginación (client-side) -->
+        <nav *ngIf="totalPages() > 1" class="paginacion">
+          <ul class="pagination">
+            <li class="page-item" [class.disabled]="page() === 1">
+              <button class="page-link" (click)="cambiarPagina(page() - 1)">‹</button>
+            </li>
+
+            <li
+              class="page-item"
+              *ngFor="let _ of [].constructor(totalPages()); let i = index"
+              [class.active]="page() === (i + 1)">
+              <button class="page-link" (click)="cambiarPagina(i + 1)">
+                {{ i + 1 }}
+              </button>
+            </li>
+
+            <li class="page-item" [class.disabled]="page() === totalPages()">
+              <button class="page-link" (click)="cambiarPagina(page() + 1)">›</button>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Acciones inferiores -->
+        <div class="bottom-actions">
+          <button class="btn btn-secondary" (click)="volver()">Volver</button>
+        </div>
+      </div>
+      <!-- ===== /PANEL ===== -->
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

@@ -9,8 +9,18 @@
     <div class="content-container">
       <main>
         <div class="opciones-grid">
-          <a class="opcion" *ngFor="let opcion of opciones" [routerLink]="opcion.ruta">
-            <img [src]="opcion.icono" [alt]="opcion.titulo">
+          <a
+            class="opcion"
+            *ngFor="let opcion of opciones"
+            [routerLink]="opcion.ruta"
+            (mouseover)="opcion.isHovered = true"
+            (mouseout)="opcion.isHovered = false"
+            [class.hovered]="opcion.isHovered"
+          >
+            <img class="icon-normal" [src]="opcion.icono" [alt]="opcion.titulo" />
+
+            <img class="icon-hover" [src]="opcion.iconoHover" [alt]="opcion.titulo" />
+
             <span>{{ opcion.titulo }}</span>
           </a>
         </div>

@@ -1,0 +1,58 @@
+<div class="layout">
+  <app-header></app-header>
+
+  <div class="layout-main">
+    <div class="sidebar-container">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="container mt-4 editar-medidor">
+      <h2>Editar Medidor</h2>
+
+      <div *ngIf="loading" class="alert alert-info">Cargando…</div>
+      <div *ngIf="!loading && error" class="alert alert-danger">{{ error }}</div>
+      <div *ngIf="!loading && success" class="alert alert-success">{{ success }}</div>
+
+      <form *ngIf="!loading" (ngSubmit)="guardar()" novalidate>
+        <div class="grid">
+          <div class="field">
+            <label for="idMedidor">ID Medidor</label>
+            <input id="idMedidor" type="text" class="form-input" [(ngModel)]="form.Id" name="Id" />
+          </div>
+
+          <div class="field">
+            <label for="numeroMedidor">Numero Medidor</label>
+            <input id="numeroMedidor" type="text" class="form-input" [(ngModel)]="form.Numero" name="Numero" />
+          </div>
+
+          <div class="field">
+            <label for="unidadId">Unidad Id</label>
+            <input id="unidadId" type="text" class="form-input" [(ngModel)]="form.UnidadId" name="UnidadId" />
+          </div>
+
+          <div class="field">
+            <label for="numeroCliente">Numero de cliente</label>
+            <input id="numeroCliente" type="text" class="form-input" [(ngModel)]="form.NumeroCliente" name="NumeroCliente" />
+          </div>
+        </div>
+
+        <label class="checkline">
+          <input type="checkbox" [(ngModel)]="form.Active" name="Active" />
+          <span>Activo</span>
+        </label>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary" [disabled]="saving">Guardar</button>
+          <button type="button" class="btn btn-outline" (click)="volver()">Volver</button>
+        </div>
+
+        <p class="hint">
+          Al guardar se asegura que este medidor forme parte del set de su División
+          (DivisionId={{ form.DivisionId ?? '—' }}), sin eliminar otros ya asignados.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,104 @@
+<div class="layout">
+  <app-header></app-header>
+
+  <div class="layout-main">
+    <div class="sidebar-container">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="content-container crear-servicio">
+      <h2>Crear nuevo Servicio</h2>
+
+      <!-- Estados -->
+      <div *ngIf="saving" class="alert alert-info mb-2">Guardando...</div>
+      <div *ngIf="error" class="alert alert-danger mb-2">{{ error }}</div>
+
+      <form (ngSubmit)="guardar()" novalidate class="form">
+        <!-- Nombre -->
+        <div class="form-row">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input
+            id="nombre"
+            type="text"
+            class="form-control"
+            [(ngModel)]="nuevo.Nombre"
+            name="Nombre"
+            required
+            placeholder="Ej: Servicio Eléctrico"
+            #nombreModel="ngModel"
+          />
+          <div class="error" *ngIf="nombreModel.invalid && nombreModel.touched">
+            El nombre es obligatorio.
+          </div>
+        </div>
+
+        <!-- Identificador -->
+        <div class="form-row">
+          <label for="identificador" class="form-label">Identificador</label>
+          <input
+            id="identificador"
+            type="text"
+            class="form-control"
+            [(ngModel)]="nuevo.Identificador"
+            name="Identificador"
+            required
+            placeholder="Ej: SVC-001"
+            #identificadorModel="ngModel"
+          />
+          <div class="error" *ngIf="identificadorModel.invalid && identificadorModel.touched">
+            El identificador es obligatorio.
+          </div>
+        </div>
+
+        <!-- Grid: PMG + Institución (select) -->
+        <div class="grid-2">
+          <div class="form-row">
+            <label class="form-label" for="pmg">Reporta PMG</label>
+            <div class="checkbox-row">
+              <input id="pmg" type="checkbox" class="form-check" [(ngModel)]="nuevo.ReportaPMG" name="ReportaPMG" />
+              <label for="pmg" class="checkbox-label">Sí</label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="institucion" class="form-label">Institución</label>
+
+            <!-- SELECT de instituciones -->
+            <select
+              id="institucion"
+              class="form-select"
+              [(ngModel)]="nuevo.InstitucionId"
+              name="InstitucionId"
+              required
+              #instModel="ngModel"
+              [disabled]="cargandoInstituciones || instituciones.length === 0"
+            >
+              <option [ngValue]="null" disabled selected>Seleccionar institución</option>
+              <option *ngFor="let i of instituciones" [ngValue]="i.Id">
+                {{ i.Nombre }}
+              </option>
+            </select>
+
+            <div class="hint" *ngIf="cargandoInstituciones">Cargando instituciones…</div>
+            <div class="error" *ngIf="instModel.invalid && instModel.touched">
+              Debes seleccionar una institución.
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Acciones -->
+        <div class="actions">
+          <button type="submit" class="btn btn-primary" [disabled]="!formValido() || saving">
+            Crear
+          </button>
+          <button type="button" class="btn btn-outline" (click)="cancelar()" [disabled]="saving">
+            Volver
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

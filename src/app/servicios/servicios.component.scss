@@ -1,20 +1,527 @@
+/* ===== Layout base ===== */
 .layout {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
-
 .layout-main {
   display: flex;
   flex: 1;
 }
 
-
-
-.content-container {
-  flex: 1;
+/* ===== Página Servicios ===== */
+.servicios {
   padding: 2rem;
-  overflow-y: auto;
+
+  h2 {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 25px;
+    color: #111111;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Filtros */
+  .filter-block {
+    margin-bottom: 1rem;
+
+    .filter-title {
+      font-weight: 700;
+      font-size: 16px;
+      color: #373737;
+      display: inline-block;
+      margin-bottom: .25rem;
+    }
+
+    .filter-line {
+      display: grid;
+      grid-template-columns: 1fr 240px auto auto;
+      gap: .20rem;
+      align-items: center;
+
+      .form-control {
+        height: 38px;
+        width: auto;
+        border: 1px solid rgba(0, 0, 0, 0.8705882353);
+        border-radius: 0px;
+        padding: 0 10px;
+      }
+            ::placeholder { 
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 16px;
+        color: #4D4D4D;
+        line-height: 34px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+       }
+
+      .form-select {
+            height: 38px;
+    width: auto;
+    border: 1px solid rgba(0, 0, 0, 0.8705882353);
+    border-radius: 0px;
+    padding: 0 10px;
+    height: 41px;
+    font-family: Roboto;
+        font-weight: 400;
+        font-size: 16px;
+        color: #4D4D4D;
+      }
+      select.form-select option{
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 16px;
+        color: #4D4D4D;
+        line-height: 34px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+         
+
+      .btn-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: 41px;
+    background: #0F69C4;
+    border-color: #0F69C4;
+    border-radius: 0px;
+    padding: 0 1rem;
+    font-weight: 600;
+    color: #fff;
+      }
+
+      .btn-clear {
+    align-items: center;
+    gap: 0.6rem;
+    height: 40px;
+    background: rgba(15, 105, 196, 0);
+    border-color: #0F69C4;
+    border-radius: 0px;
+    padding: 0 1rem;
+    font-weight: 600;
+    color: #0F69C4;
+      }
+    }
+  }
+
+  /* Encabezados visuales */
+  .header-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 200px;
+    font-size: .9rem;
+    color: #6b7280;
+    margin-top: .25rem;
+
+    .col-actions { text-align: right; }
+  }
+  .separator {
+    border: 0;
+    border-top: 1px solid #0000001a;
+    margin: .5rem 0 1rem;
+  }
+
+  /* Tabla limpia tipo lista */
+  .table-clean {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+      hr.separator {
+    border: 0;
+    width: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.8705882353);
+    margin: 0.5rem 0 1rem;
+}
+    tbody tr {
+      background: transparent;
+      &.alt td .row-chip { background: #f5f8ff; } /* zebra */
+    }
+
+    td {
+      border: 0;
+      padding: 0;
+      vertical-align: middle;
+    }
+
+    .col-id { width: 90px; padding-right: .5rem; }
+    .col-name { padding-right: .75rem; }
+    .col-actions { width: 200px; }
+
+    .row-chip {
+      background: #eaf2ff;
+      color: #202124;
+      border-radius: 0px;
+      padding: .65rem .8rem;
+      transition: background .15s ease;
+      &:hover { background: #dbe9ff; }
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: .5rem;
+
+      .btn {
+        border-radius: 999px;
+        font-weight: 700;
+        padding: 0.42rem 0.8rem;
+        line-height: 1;
+        border: 1px solid transparent;
+        font-size: 14px;
+      }
+
+      .btn-edit {
+        background: #0F69C4;
+        border-color: #0F69C4;
+        color: #fff;
+      }
+
+      .btn-delete {
+        background: #eef3ff;
+        border-color: #cfe0ff;
+        color: #1f3fa3;
+      }
+
+      .btn-edit:hover { filter: brightness(0.95); }
+      .btn-delete:hover { background: #e3ecff; }
+    }
+  }
+
+  /* Paginación */
+  .paginacion {
+    display: flex;
+    margin-top: .75rem;
+
+    .pagination {
+      list-style: none !important;
+      padding-left: 0 !important;
+      display: flex;
+      gap: .25rem;
+      margin: 0;
+    }
+
+    .page-link {
+    border: 0;
+    color: #1f3fa3;
+    padding: 0.3rem 0.55rem;
+    border-radius: 6px;
+    background: #fff;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #0F69C4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+    .page-item.active .page-link {
+    background: #0F69C4;
+    color: #fff;
+    border-radius: 2px;
+    }
+    .page-item.disabled .page-link {
+      color: #9aa0a6;
+      background: #f3f4f6;
+      pointer-events: none;
+    }
+
+    /* apaga marcadores */
+    .pagination > li,
+    .pagination > li::marker { list-style: none; content: ""; }
+  }
+
+  /* Botones finales */
+  .bottom-actions {
+    display: flex;
+    gap: .5rem;
+    margin-top: 1rem;
+
+    .btn-create {
+    align-items: center;
+    gap: 0.6rem;
+    height: 40px;
+    background: #0F69C4;
+    border-color: #0F69C4;
+    border-radius: 0px;
+    padding: 0 1rem;
+    font-weight: 600;
+    color: #fff;
+    }
+    button.btn.btn-secondary {
+    align-items: center;
+    gap: 0.6rem;
+    height: 40px;
+    background: rgba(15, 105, 196, 0);
+    border-color: #0F69C4;
+    border-radius: 0px;
+    padding: 0 1rem;
+    font-weight: 600;
+    color: #0F69C4;
+}
+  }
+}
+
+/* ===== Tabla "limpia" estilo tarjetas azules (solo tabla) ===== */
+.table-clean {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px; /* separa filas como tarjetas */
+  background: transparent;
+
+  tbody tr { background: transparent; }
+
+  td {
+    border: 0;
+    padding: 0;
+    vertical-align: middle;
+  }
+
+  .col-nombre { width: 100%; }
+
+  /* Tarjeta/chip azul por fila */
+  .row-chip {
+    background: #CFE1F3;          /* azul suave de tu diseño */
+    color: #373737;
+    border-radius: 0px;
+    padding: 0.65rem 0.8rem;
+    transition: background 0.15s ease, box-shadow .15s ease;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-family: Roboto, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:hover {
+      background: #dbe9ff;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+  }
+
+  /* Acciones al lado derecho, en línea con estilo chip */
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: .5rem;
+
+    .btn {
+      border-radius: 999px;
+      font-weight: 700;
+      padding: 0.42rem 0.8rem;
+      line-height: 1;
+      border: 1px solid transparent;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn-edit {
+      background: #0F69C4;
+      border-color: #0F69C4;
+      color: #fff;
+    }
+
+    .btn-delete {
+      background: #eef3ff;
+      border-color: #cfe0ff;
+      color: #1f3fa3;
+    }
+
+    .btn-edit:hover { filter: brightness(0.95); }
+    .btn-delete:hover { background: #e3ecff; }
+  }
+
+  .empty {
+    padding: 1rem;
+    text-align: center;
+    color: #6b7280;
+    border: 1px dashed #dcdcdc;
+    border-radius: 8px;
+  }
+}
+
+/* ===== Zebra (una fila con sombreado, la siguiente sin) ===== */
+.table-clean tbody tr .row-chip {
+  background: #ffffff; /* fila sin sombreado */
+}
+.table-clean tbody tr:nth-child(odd) .row-chip {
+  background: #CFE1F3; /* fila 1,3,5,... con azul suave */
+}
+.table-clean tbody tr:nth-child(odd) .row-chip:hover {
+  background: #dbe9ff;
+}
+.table-clean tbody tr:nth-child(even) .row-chip:hover {
+  background: #f6fafe;
+}
+.uni {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+/* ===== Encabezado de la tabla (thead) ===== */
+.table-clean thead {
+  position: sticky;      /* opcional: queda fijo al hacer scroll */
+  top: 0;
+  z-index: 2;
   background: #fff;
 }
 
+.table-clean thead .table-head th {
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+/* Anchos y alineaciones por columna */
+.table-clean thead .col-id {
+  width: 60px;           /* ajusta si quieres más/menos */
+}
+
+.table-clean thead .col-nombre {
+  width: auto;           /* ocupa el espacio restante */
+}
+
+.table-clean thead .col-actions {
+  width: 160px;          /* acorde a los botones Editar/Eliminar */
+  text-align: right;     /* acciones alineadas a la derecha */
+}
+/* Espaciado entre filas tipo “tarjeta” */
+.table-clean {
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+/* Estilo base de las filas (fondo blanco) */
+.table-clean tbody tr.chip-row td {
+  background: #ffffff;               /* filas pares */
+  padding: .65rem .8rem;
+  border: 0;
+  vertical-align: middle;
+  
+}
+
+/* Zebra: filas impares en azul */
+.table-clean tbody tr.chip-row:nth-child(odd) td {
+  background: #CFE1F3;               /* filas 1,3,5,... */
+}
+
+/* Bordes redondeados en extremos */
+.table-clean tbody tr.chip-row td:first-child {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.table-clean tbody tr.chip-row td:last-child {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+/* Hover (suave según el color de la fila) */
+.table-clean tbody tr.chip-row:nth-child(odd):hover td {
+  background: #dbe9ff;
+}
+.table-clean tbody tr.chip-row:nth-child(even):hover td {
+  background: #f6fafe;
+}
+
+/* Alineaciones / anchos */
+.table-clean tbody .col-id      { width: 60px;  }
+.table-clean tbody .col-nombre  { width: auto;  }
+.table-clean tbody .col-actions { width: 160px; text-align: right; }
+
+/* Acciones (igual que antes) */
+.table-clean .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: .5rem;
+}
+.table-clean .actions .btn {
+  border-radius: 0px;
+  font-weight: 700;
+  padding: 0.42rem 0.8rem;
+  line-height: 1;
+  border: 1px solid transparent;
+  font-size: 14px;
+  cursor: pointer;
+}
+.table-clean .actions .btn-edit {
+  background: #0F69C4;
+  border-color: #0F69C4;
+  color: #fff;
+}
+.table-clean .actions .btn-delete {
+  background: #eef3ff;
+  border-color: #cfe0ff;
+  color: #1f3fa3;
+}
+.table-clean .actions .btn-edit:hover { filter: brightness(0.95); }
+.table-clean .actions .btn-delete:hover { background: #e3ecff; }
+hr.table-hr {
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.8705882353);
+    margin: 0.5rem 0 1rem;
+}
+/* ===== Switch Activar/Desactivar ===== */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  vertical-align: middle;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switch .slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #cfd4dc;
+  transition: .2s;
+  border-radius: 999px;
+}
+.switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  top: 3px;
+  background: #fff;
+  transition: .2s;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+
+/* checked */
+.switch input:checked + .slider {
+  background: #0F69C4;
+}
+.switch input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* disabled */
+.switch input:disabled + .slider {
+  opacity: .6;
+  cursor: default;
+}

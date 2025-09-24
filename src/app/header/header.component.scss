@@ -26,7 +26,12 @@
 .spacer {
   flex-grow: 1;
 }
-
+.salir{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre texto e ícono */
+  align-items: anchor-center !important;
+}
 
 
 
@@ -34,11 +39,15 @@ button.mat-icon-button {
   color: #fff !important;
 }
 button.btn-salir {
-  
   font-size: 16px;
   font-weight: 500;
   color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: auto;
 }
+
 /* Responsivo para pantallas pequeñas */
 @media (max-width: 600px) {
   .header-bar {
@@ -59,7 +68,6 @@ button.btn-salir {
     height: 32px;
   }
 
-  .salir {
-    font-size: 14px;
-  }
+
+
 }

@@ -1,20 +1,218 @@
+/* ===== Layout base ===== */
 .layout {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
+.layout-main { display: flex; flex: 1; }
 
-.layout-main {
-  display: flex;
-  flex: 1;
-}
-
-
-
-.content-container {
-  flex: 1;
+/* ===== Página Roles ===== */
+.roles {
   padding: 2rem;
-  overflow-y: auto;
-  background: #fff;
-}
+  width: 60%;
 
+  h2 {
+    font-family: Roboto, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    color: #111;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Encabezado + separador */
+  .header-row {
+    display: grid;
+    grid-template-columns: 1fr 160px;
+    font-size: .9rem;
+    color: #6b7280;
+    margin-top: .25rem;
+
+    .col-right { 
+      text-align: right;
+          font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+    .col-left{
+          font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+  }
+
+  .separator {
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.8705882353);
+    margin: 0.5rem 0 1rem;
+  }
+
+  /* Tabla “limpia” con chips */
+  .table-clean {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    background: transparent;
+
+    tbody tr { background: transparent; }
+
+    td {
+      border: 0;
+      padding: 0;
+      vertical-align: middle;
+    }
+
+    .col-nombre { width: 100%; }
+
+    .row-chip {
+      background: #ffffff; /* base; zebra se aplica abajo */
+      color: #373737;
+      border-radius: 0px;
+      padding: .65rem .8rem;
+      transition: background .15s ease, box-shadow .15s ease;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      font-family: Roboto, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 34px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &:hover {
+        background: #f6fafe;
+        box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      }
+    }
+
+    /* Zebra: una fila sí y otra no con azul suave */
+    tbody tr.alt .row-chip { background: #CFE1F3; }
+    tbody tr.alt .row-chip:hover { background: #dbe9ff; }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: .5rem;
+
+      .btn {
+        border-radius: 999px;
+        font-weight: 700;
+        padding: 0.42rem 0.8rem;
+        line-height: 1;
+        border: 1px solid transparent;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .btn-edit {
+        background: #0F69C4;
+        border-color: #0F69C4;
+        color: #fff;
+      }
+
+      .btn-delete {
+        background: #eef3ff;
+        border-color: #cfe0ff;
+        color: #1f3fa3;
+      }
+
+      .btn-edit:hover { filter: brightness(0.95); }
+      .btn-delete:hover { background: #e3ecff; }
+    }
+
+    .empty {
+      padding: 1rem;
+      text-align: center;
+      color: #6b7280;
+      border: 1px dashed #dcdcdc;
+      border-radius: 8px;
+    }
+  }
+
+  /* Paginación */
+  .paginacion {
+    display: flex;
+    margin-top: .75rem;
+
+    .pagination {
+      list-style: none !important;
+      padding-left: 0 !important;
+      display: flex;
+      gap: .25rem;
+      margin: 0;
+    }
+
+    .page-link {
+      border: 0;
+      color: #0F69C4;
+      padding: .3rem .55rem;
+      border-radius: 6px;
+      background: #fff;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+    }
+
+    .page-item.active .page-link {
+      background: #0F69C4;
+      color: #fff;
+      border-radius: 2px;
+    }
+
+    .page-item.disabled .page-link {
+      color: #9aa0a6;
+      background: #f3f4f6;
+      pointer-events: none;
+    }
+
+    /* sin bullets */
+    .pagination > li, .pagination > li::marker { list-style: none; content: ""; }
+  }
+
+  /* Botones inferiores */
+  .bottom-actions {
+    display: flex;
+    gap: .5rem;
+    margin-top: 1rem;
+    justify-content: flex-end;
+
+    .btn-create {
+      align-items: center;
+      gap: .6rem;
+      height: 40px;
+      background: #0F69C4;
+      border-color: #0F69C4;
+      border-radius: 0px;
+      padding: 0 1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .btn.btn-secondary {
+      align-items: center;
+      gap: .6rem;
+      height: 40px;
+      background: transparent;
+      border-color: #0F69C4;
+      border-radius: 0px;
+      padding: 0 1rem;
+      font-weight: 600;
+      color: #0F69C4;
+    }
+  }
+}

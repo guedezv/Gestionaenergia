@@ -1,0 +1,84 @@
+<div class="layout">
+  <app-header></app-header>
+
+  <div class="layout-main">
+    <div class="sidebar-container">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="container mt-4 crear-energetico">
+      <h2>Crear energético</h2>
+
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+      <form (ngSubmit)="guardar()">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="form.Nombre"
+              name="Nombre"
+              placeholder="Ej: Electricidad"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Icono</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="form.Icono"
+              name="Icono"
+              placeholder="Ej: ge-energetico-electricidad"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Posición</label>
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="form.Posicion"
+              name="Posicion"
+              min="0"
+            />
+          </div>
+
+          <div></div> <!-- hueco para cuadrar grid -->
+        </div>
+
+        <div class="checks-row">
+          <label class="check">
+            <input type="checkbox" [(ngModel)]="form.Multiple" name="Multiple" />
+            <span>Múltiple</span>
+          </label>
+
+          <label class="check">
+            <input type="checkbox" [(ngModel)]="form.PermiteMedidor" name="PermiteMedidor" />
+            <span>Permite medidor</span>
+          </label>
+
+          <label class="check">
+            <input type="checkbox" [(ngModel)]="form.PermitePotenciaSuministrada" name="PermitePotenciaSuministrada" />
+            <span>Permite potencia suministrada</span>
+          </label>
+
+          <label class="check">
+            <input type="checkbox" [(ngModel)]="form.PermiteTipoTarifa" name="PermiteTipoTarifa" />
+            <span>Permite tipo tarifa</span>
+          </label>
+        </div>
+
+        <div class="buttons">
+          <button type="submit" class="btn btn-primary" [disabled]="saving">Guardar</button>
+          <button type="button" class="btn btn-outline" (click)="volver()">Volver</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

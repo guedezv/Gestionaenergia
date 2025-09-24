@@ -1,20 +1,132 @@
-.layout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
+/* ===== Layout base ===== */
+.layout { display: flex; flex-direction: column; height: 100vh; }
+.layout-main { display: flex; flex: 1; }
 
-.layout-main {
-  display: flex;
-  flex: 1;
-}
-
-
-
-.content-container {
-  flex: 1;
+/* ===== Página Medidores ===== */
+.medidores {
   padding: 2rem;
-  overflow-y: auto;
-  background: #fff;
-}
 
+  h2 {
+    font-family: Roboto, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    color: #111;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Filtros */
+  .filter-block {
+    margin-bottom: 1rem;
+
+    .filter-title {
+      font-weight: 700; font-size: 16px; color: #373737;
+      display: inline-block; margin-bottom: .25rem;
+    }
+
+    .filter-line {
+      display: grid;
+      grid-template-columns: 1fr 270px 270px auto;
+      gap: .4rem; align-items: center;
+
+      .form-control, .form-select {
+        height: 41px; border: 1px solid #000000DE; border-radius: 0; padding: 0 10px;
+        font-family: Roboto, Arial, sans-serif; font-size: 16px; color: #4D4D4D;
+      }
+
+      .btn-filter {
+        display: inline-flex; align-items: center; gap: .6rem;
+        height: 41px; background: #0F69C4; border-color: #0F69C4; border-radius: 0;
+        padding: 0 1rem; font-weight: 600; color: #fff;
+      }
+      .btn-clear {
+        align-items: center; gap: .6rem; height: 41px;
+        background: transparent; border: 1px solid #0F69C4; border-radius: 0;
+        padding: 0 1rem; font-weight: 600; color: #0F69C4;
+      }
+
+      .page-size {
+        display: flex; align-items: center; gap: .4rem;
+        label { font-size: 14px; color: #555; }
+        .form-select { width: 100px; }
+      }
+    }
+  }
+
+  /* Resumen */
+  .summary {
+    margin: .25rem 0 .5rem; color: #555; font-size: 14px;
+    strong { color: #111; }
+  }
+
+  /* Encabezado visual */
+  .header-row {
+    display: grid;
+    grid-template-columns: 90px 120px 120px 1fr 150px 130px 130px 90px 140px;
+    gap: 8px;
+    font-size: .9rem; color: #6b7280; margin-top: .25rem;
+
+    .col-actions { text-align: right; }
+    .wide { grid-column: auto; }
+  }
+
+  .separator {
+    border: 0; border-top: 1px solid rgba(0,0,0,.54);
+    margin: .5rem 0 1rem;
+  }
+
+  /* Tabla tipo lista con zebra */
+  .table-clean {
+    width: 100%; border-collapse: separate; border-spacing: 0 8px; background: transparent;
+
+    tbody tr { background: transparent; }
+    td { border: 0; padding: 0; vertical-align: middle; }
+
+    &.zebra tbody tr td { background: #fff; }
+    &.zebra tbody tr.alt td { background: #CFE1F3; }
+
+    .row-chip {
+      padding: .65rem .8rem; color: #373737;
+      font-family: Roboto, Arial, sans-serif; font-size: 16px; line-height: 22px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    .col-actions .actions {
+      display: flex; justify-content: flex-end; gap: .5rem; padding-right: .5rem;
+
+      .btn {
+        border-radius: 999px; font-weight: 700; padding: .42rem .8rem;
+        line-height: 1; border: 1px solid transparent; font-size: 14px; cursor: pointer;
+      }
+      .btn-edit { background: #0F69C4; border-color: #0F69C4; color: #fff; }
+      .btn-edit:hover { filter: brightness(0.95); }
+    }
+
+    .empty {
+      padding: 1rem; text-align: center; color: #6b7280;
+      border: 1px dashed #dcdcdc; border-radius: 8px;
+    }
+  }
+
+  /* Paginación avanzada */
+  .paginacion {
+    margin-top: .75rem; display: flex; flex-wrap: wrap; gap: .5rem; align-items: center;
+
+    .pagination { list-style: none; padding-left: 0; display: flex; gap: .25rem; margin: 0; }
+    .page-link {
+      border: 0; color: #0F69C4; padding: .3rem .55rem; border-radius: 6px; background: #fff; font-family: Roboto; font-size: 16px;
+    }
+    .page-item.active .page-link { background: #0F69C4; color: #fff; border-radius: 2px; }
+    .page-item.disabled .page-link { color: #9aa0a6; background: #f3f4f6; pointer-events: none; }
+    .page-item.ellipsis .page-link.static { cursor: default; }
+
+    .goto {
+      display: flex; align-items: center; gap: .4rem; margin-left: .25rem;
+      label { font-size: 14px; color: #555; }
+      input { width: 90px; height: 36px; border: 1px solid #dadce0; border-radius: 6px; padding: 0 .5rem; }
+      .btn-go { height: 36px; padding: 0 .8rem; background: #0F69C4; color: #fff; border: none; border-radius: 6px; }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+<!-- src/app/instituciones/editar-institucion/editar-institucion.component.html -->
+<div class="layout">
+  <app-header></app-header>
+
+  <div class="layout-main">
+    <div class="sidebar-container">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="content-container editar-institucion">
+      <h2>Editar Institución</h2>
+      <div class="subtitle">{{ nombre }}</div>
+
+      <div *ngIf="cargando" class="alert alert-info mb-3">Cargando...</div>
+      <div *ngIf="!cargando && errorCarga" class="alert alert-danger mb-3">{{ errorCarga }}</div>
+
+      <form *ngIf="!cargando && !errorCarga" (ngSubmit)="guardar()" class="form">
+        <!-- Nombre -->
+        <div class="form-row">
+          <label class="form-label" for="nombre">Nombre</label>
+          <input
+            id="nombre"
+            type="text"
+            class="form-control"
+            [(ngModel)]="nombre"
+            name="nombre"
+            placeholder="Presidencia de la República"
+            required
+          />
+        </div>
+
+        <!-- Fechas -->
+        <div class="grid-2">
+          <div class="form-row">
+            <label class="form-label" for="fcrea">Fecha de Creación</label>
+            <input id="fcrea" type="text" class="form-control" placeholder="20/7/2025 03:50 pm" disabled />
+          </div>
+          <div class="form-row">
+            <label class="form-label" for="fact">Fecha de Actualización</label>
+            <input id="fact" type="text" class="form-control" placeholder="20/7/2025 03:50 pm" disabled />
+          </div>
+        </div>
+
+        <!-- Versión -->
+        <div class="form-row">
+          <label class="form-label" for="ver">Versión</label>
+          <input id="ver" type="text" class="form-control" placeholder="1" disabled />
+        </div>
+
+        <!-- Activo -->
+        <div class="checkbox-row">
+          <input id="activo" type="checkbox" class="form-check" checked disabled />
+          <label class="checkbox-label" for="activo">Activo</label>
+        </div>
+
+        <!-- Usuarios -->
+        <div class="grid-2">
+          <div class="form-row">
+            <label class="form-label" for="ult-usr">Usuario de Última Modificación</label>
+            <input id="ult-usr" type="text" class="form-control" disabled />
+          </div>
+          <div class="form-row">
+            <label class="form-label" for="usr-crea">Usuario de Creación</label>
+            <input id="usr-crea" type="text" class="form-control" disabled />
+          </div>
+        </div>
+
+        <!-- Acciones -->
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button type="button" class="btn btn-outline" (click)="cancelar()">Volver</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

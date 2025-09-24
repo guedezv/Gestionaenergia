@@ -1,0 +1,47 @@
+<div class="layout">
+  <app-header></app-header>
+
+  <div class="layout-main">
+    <div class="sidebar-container">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="content-container">
+      <h5 class="titulo mb-3">Mi Unidad</h5>
+
+      <div class="chip-direccion">
+        <span class="i">M</span>
+        <span class="texto">
+          , Nro. S/N, Complejo, La Serena, Región de Coquimbo (Biblioteca de la Serena - Juan José Latorre 782, La Serena)
+        </span>
+      </div>
+
+      <ul class="tabs">
+        <li (click)="go('informacion-general')">
+          <img src="/assets/icons/info.svg" alt="">
+          <span>Información General</span>
+        </li>
+        <li (click)="go('energeticos')">
+          <img src="/assets/icons/bolt.svg" alt="">
+          <span>Energéticos</span>
+        </li>
+        <li (click)="go('sistemas')">
+          <img src="/assets/icons/cogs.svg" alt="">
+          <span>Sistemas</span>
+        </li>
+        <li (click)="go('actualizacion-datos-unidad')">
+          <img src="/assets/icons/update.svg" alt="">
+          <span>Actualización Datos Unidad</span>
+        </li>
+      </ul>
+
+      <hr class="separator" />
+
+      <div class="panel blanco">
+        <p>Selecciona una pestaña para ver el detalle.</p>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

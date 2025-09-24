@@ -6,11 +6,124 @@
       <app-sidebar></app-sidebar>
     </div>
 
-    <div class="content-container">
-      <main>
-        <h2>Medidores</h2>
-        <p>Aquí irá la gestión de los Medidores.</p>
-      </main>
+    <div class="container mt-4 medidores">
+      <h2>Mantenedor de Medidores</h2>
+
+      <div *ngIf="loading" class="alert alert-info">Cargando medidores…</div>
+      <div *ngIf="!loading && error" class="alert alert-danger">{{ error }}</div>
+
+      <!-- Filtros -->
+      <div class="filter-block" *ngIf="!loading">
+        <label class="filter-title">Filtrar por:</label>
+        <div class="filter-line">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="ID / Número / Cliente"
+            [(ngModel)]="filtroTexto"
+            name="filtroTexto"
+          />
+
+          <select
+            class="form-select"
+            [(ngModel)]="institucionSeleccionada"
+            name="filtroInstitucion"
+            (ngModelChange)="onChangeInstitucion()">
+            <option [ngValue]="null">Ministerio (todos)</option>
+            <option *ngFor="let i of instituciones" [ngValue]="i.Id">{{ i.Nombre }}</option>
+          </select>
+
+          <select
+            class="form-select"
+            [(ngModel)]="servicioSeleccionado"
+            name="filtroServicio">
+            <option [ngValue]="null">Servicio (todos)</option>
+            <option *ngFor="let s of serviciosFiltrados" [ngValue]="s.Id">{{ s.Nombre }}</option>
+          </select>
+
+          <button class="btn btn-primary btn-filter" type="button" (click)="aplicarFiltro()">
+            Filtrar<img src="/../icono-btn-filtrar.svg" alt="Icono de filtro" class="btn-icon">
+          </button>
+        </div>
+      </div>
+
+      <!-- Encabezados + separador -->
+      <div class="header-row" *ngIf="!loading">
+        <span>ID</span>
+        <span>Número</span>
+        <span>Unidad Id</span>
+        <span class="wide">Unidad Propietaria</span>
+        <span>Número Cliente</span>
+        <span>Es compartido</span>
+        <span>Es inteligente</span>
+        <span>Activo</span>
+        <span class="col-actions">Acciones</span>
+      </div>
+      <hr class="separator" *ngIf="!loading" />
+
+      <!-- Tabla -->
+      <table class="table table-clean zebra" *ngIf="!loading">
+        <tbody>
+          <tr *ngFor="let m of medidores; let i = index" [class.alt]="i % 2 === 1">
+            <td class="col id"><div class="row-chip">{{ m.Id }}</div></td>
+            <td class="col"><div class="row-chip">{{ m.Numero || '—' }}</div></td>
+            <td class="col"><div class="row-chip">{{ m.UnidadId || '—' }}</div></td>
+            <td class="col wide"><div class="row-chip">{{ m.UnidadPropietaria || '—' }}</div></td>
+            <td class="col"><div class="row-chip">{{ m.NumeroCliente || '—' }}</div></td>
+            <td class="col"><div class="row-chip">{{ esSiNo(m.EsCompartido) }}</div></td>
+            <td class="col"><div class="row-chip">{{ esSiNo(m.EsInteligente) }}</div></td>
+            <td class="col">
+              <div class="row-chip">
+                <input type="checkbox" [checked]="esActivo(m)" disabled />
+              </div>
+            </td>
+            <td class="col col-actions">
+              <div class="row-chip actions-chip">
+                <div class="actions">
+                 <!-- Dentro de la columna de acciones de cada fila -->
+<button class="btn btn-sm btn-edit" type="button" (click)="editar(m)">Editar</button>
+
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="medidores.length === 0">
+            <td colspan="9" class="empty">No hay medidores para mostrar.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Paginación (sin tamaño de página ni “Ir a”) -->
+      <nav *ngIf="!loading && totalPaginas > 1" class="paginacion">
+        <ul class="pagination">
+          <li class="page-item" [class.disabled]="pagina === 1">
+            <button class="page-link" (click)="irPrimera()" title="Primera">«</button>
+          </li>
+          <li class="page-item" [class.disabled]="pagina === 1">
+            <button class="page-link" (click)="irA(pagina - 1)" title="Anterior">‹</button>
+          </li>
+
+          <li
+            class="page-item"
+            *ngFor="let p of pageItems"
+            [class.active]="p === pagina"
+            [class.ellipsis]="p === '…'">
+            <button
+              class="page-link"
+              *ngIf="p !== '…'; else dots"
+              (click)="irA(p)">{{ p }}</button>
+            <ng-template #dots><span class="page-link static">…</span></ng-template>
+          </li>
+
+          <li class="page-item" [class.disabled]="pagina === totalPaginas">
+            <button class="page-link" (click)="irA(pagina + 1)" title="Siguiente">›</button>
+          </li>
+          <li class="page-item" [class.disabled]="pagina === totalPaginas">
+            <button class="page-link" (click)="irUltima()" title="Última">»</button>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 

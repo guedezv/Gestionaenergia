@@ -1,0 +1,108 @@
+<div class="layout">
+  <app-header></app-header>
+
+  <div class="layout-main">
+    <div class="sidebar-container">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="content-container">
+      <main class="editar-servicio">
+        <h2>Editar Servicio</h2>
+        <div class="subtitle" *ngIf="form?.Nombre">{{ form.Nombre }}</div>
+
+        <!-- mensajes -->
+        <div *ngIf="loading" class="alert alert-info">Cargando…</div>
+        <div *ngIf="!loading && error" class="alert alert-danger">{{ error }}</div>
+
+        <form *ngIf="!loading && !error" (ngSubmit)="guardar()">
+          <!-- Nombre -->
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" [(ngModel)]="form.Nombre" name="Nombre" class="form-control" required />
+          </div>
+
+          <!-- Identificador -->
+          <div class="form-group">
+            <label>Identificador</label>
+            <input type="text" [(ngModel)]="form.Identificador" name="Identificador" class="form-control" />
+          </div>
+
+          <!-- Checks en línea -->
+          <div class="checks-row">
+            <label class="check">
+              <input type="checkbox" [(ngModel)]="form.ReportaPMG" name="ReportaPMG" />
+              <span>ReportaPMG</span>
+            </label>
+
+            <label class="check">
+              <input type="checkbox" [(ngModel)]="form.PgaRevisionRed" name="PgaRevisionRed" />
+              <span>OTCO del PGA – Etapa 2</span>
+            </label>
+
+            <label class="check">
+              <input type="checkbox" [(ngModel)]="form.RevisionRed" name="RevisionRed" />
+              <span>Alcance Diagnostico</span>
+            </label>
+
+            <label class="check">
+              <input type="checkbox" [(ngModel)]="form.ValidacionConcientizacion" name="ValidacionConcientizacion" />
+              <span>Validación Concientización</span>
+            </label>
+          </div>
+
+          <!-- Institución -->
+          <div class="form-group">
+            <label>Institución</label>
+            <select [(ngModel)]="form.InstitucionId" name="InstitucionId" class="form-select">
+              <option *ngFor="let i of instituciones" [ngValue]="i.Id">{{ i.Nombre }}</option>
+            </select>
+          </div>
+
+          <!-- Grid meta (solo lectura visual) -->
+          <div class="meta-grid">
+            <div class="form-group">
+              <label>Usuario de Última Modificación</label>
+              <input type="text" class="form-control" [value]="meta.modifiedBy" readonly />
+            </div>
+
+            <div class="form-group">
+              <label>Usuario de Creación</label>
+              <input type="text" class="form-control" [value]="meta.createdBy" readonly />
+            </div>
+
+            <div class="form-group">
+              <label>Versión</label>
+              <input type="text" class="form-control" [value]="meta.version" readonly />
+            </div>
+
+            <div class="form-group check-readonly">
+              <label>Activo</label>
+              <div class="readonly-box">
+                <input type="checkbox" [checked]="meta.activo ?? false" disabled />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Fecha de Creación</label>
+              <input type="text" class="form-control" [value]="meta.createdAt" readonly />
+            </div>
+
+            <div class="form-group">
+              <label>Fecha de Actualización</label>
+              <input type="text" class="form-control" [value]="meta.updatedAt" readonly />
+            </div>
+          </div>
+
+          <!-- Botones -->
+          <div class="buttons">
+            <button type="submit" class="btn btn-primary" [disabled]="saving">Guardar</button>
+            <button type="button" class="btn btn-outline" (click)="volver()">Volver</button>
+          </div>
+        </form>
+      </main>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

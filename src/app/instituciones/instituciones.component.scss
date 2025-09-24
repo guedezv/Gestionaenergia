@@ -1,20 +1,387 @@
-.layout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
+/* ===== Layout base (si ya lo tienes global, puedes omitir) ===== */
+.layout { display: flex; flex-direction: column; height: 100vh; }
+.layout-main { display: flex; flex: 1; }
 
-.layout-main {
-  display: flex;
-  flex: 1;
-}
-
-
-
-.content-container {
-  flex: 1;
+/* ===== Página Instituciones ===== */
+.instituciones {
   padding: 2rem;
-  overflow-y: auto;
-  background: #fff;
+  width: 60%;
+
+  h2 {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 25px;
+    color: #111111;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Filtro */
+  .filter-block {
+    margin-bottom: 1rem;
+
+    .filter-label {
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+
+    .filter-line {
+      display: flex;
+      justify-content: space-between;
+      gap: .20rem;
+      align-items: center;
+
+      .form-control {
+        height: 38px;
+        width: 100%;
+        border: 1px solid #000000DE;
+        border-radius: 0px;
+        padding: 0 10px;
+      }
+      ::placeholder { 
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 16px;
+        color: #4D4D4D;
+        line-height: 34px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+       }
+
+
+      .btn-filter {
+        display: inline-flex;
+        align-items: center;
+        gap: .6rem;
+        height: 41px;
+        background: #0F69C4;
+        border-color: #0F69C4;
+        border-radius: 0px;
+        padding: 0 1rem;
+        font-weight: 600;
+        color: #fff;
+
+      }
+    }
+  }
+
+  /* Encabezado visual "Nombres | Acciones" */
+  .header-row {
+    display: grid;
+    grid-template-columns: 1fr 160px;
+    font-size: .9rem;
+    color: #6b7280;
+    margin-top: .25rem;
+    padding: 0 15px;
+
+    .col-right { 
+    text-align: right;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  }
+  .col-left{
+        font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .separator {
+    border: 0;
+    border-top: 1px solid #000000DE;
+    margin: .5rem 0 1rem;
+  }
+
+  /* Tabla "limpia": sin bordes, se verán chips azules por fila */
+  .table-clean {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px; /* separa filas como tarjetas */
+    background: transparent;
+
+    tbody tr { background: transparent; }
+
+    td {
+      border: 0;
+      padding: 0;
+      vertical-align: middle;
+    }
+
+    .col-acciones { width: 160px; }
+
+    /* Tarjeta azul de cada fila */
+    .row-chip {
+    background: #CFE1F3;
+    color: #202124;
+    border-radius: 0px;
+    padding: 0.65rem 0.8rem;
+    transition: background 0.15s ease;
+    display: flex;
+    /* align-items: anchor-center; */
+    place-content: space-between;
+    align-content: space-around;
+        font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #373737;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+      &:hover { background: #dbe9ff; }
+    }
+
+    /* Acciones al lado derecho, en línea con estilo chip */
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: .5rem;
+
+      .btn {
+      border-radius: 999px;
+      font-weight: 700;
+      padding: 0.42rem 0.8rem;
+      line-height: 1;
+      border: 1px solid transparent;
+      font-size: 14px;
+      }
+
+      .btn-edit {
+        background: #0F69C4;
+        border-color: #0F69C4;
+        color: #fff;
+      }
+
+      .btn-delete {
+        background: #eef3ff;
+        border-color: #cfe0ff;
+        color: #1f3fa3;
+      }
+
+      .btn-edit:hover { filter: brightness(0.95); }
+      .btn-delete:hover { background: #e3ecff; }
+    }
+
+    .empty {
+      padding: 1rem;
+      text-align: center;
+      color: #6b7280;
+      border: 1px dashed #dcdcdc;
+      border-radius: 8px;
+    }
+  }
+
+  /* Paginación horizontal, sutil */
+  .paginacion {
+    display: flex;
+    justify-content: flex-start; /* como en la captura, alineada a la izquierda */
+    margin-top: .5rem;
+
+    .pagination {
+      display: flex;
+      gap: .25rem;
+      margin: 0;
+    }
+
+    .page-link {
+      border: 0;
+      color: #1f3fa3;
+      padding: .3rem .55rem;
+      border-radius: 6px;
+      background: #fff;
+          font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #0F69C4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+
+    .page-item.active .page-link {
+      background: #0F69C4;
+      color: #fff;
+      border-radius: 2px;
+    }
+
+    .page-item.disabled .page-link {
+      color: #9aa0a6;
+      background: #f3f4f6;
+      pointer-events: none;
+    }
+  }
+
+  /* Botones inferiores */
+  .bottom-actions {
+    display: flex;
+    gap: .5rem;
+    margin-top: 1rem;
+    
+
+    .btn-create {
+    align-items: center;
+    gap: 0.6rem;
+    height: 40px;
+    background: #0F69C4;
+    border-color: #0F69C4;
+    border-radius: 0px;
+    padding: 0 1rem;
+    font-weight: 600;
+    color: #fff;
+    }
+ 
+  }
+}
+button.btn.btn-secondary {
+    align-items: center;
+    gap: 0.6rem;
+    height: 40px;
+    background: #0f69c400;
+    border-color: #0F69C4;
+    border-radius: 0px;
+    padding: 0 1rem;
+    font-weight: 600;
+    color: #0F69C4;
 }
 
+/* Quita los bullets/marcadores de la paginación */
+.paginacion .pagination {
+  list-style: none !important;   /* sin bullets */
+  padding-left: 0 !important;    /* sin sangría */
+  margin: 0;
+  display: flex;                  /* en fila */
+  gap: .25rem;
+}
+
+.paginacion .pagination > li {
+  list-style: none !important;    /* por si algún tema lo re-aplica */
+}
+
+/* Apagado total del ::marker (por si algún navegador insiste) */
+.paginacion .pagination > li::marker {
+  content: "" !important;
+}
+
+.uni {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+/* ===== Layout de acciones (botón + switch) ===== */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+
+  .btn-edit { white-space: nowrap; }
+}
+
+/* ===== Estilo del slide-toggle (Angular Material MDC) ===== */
+/* Nota: usamos ::ng-deep solo para ajustar tokens de Material dentro del componente */
+:host ::ng-deep .mat-slide-toggle {
+  display: inline-flex;
+  align-items: center;
+
+  /* separa el texto del switch */
+  .mat-slide-toggle-content {
+    margin-left: .35rem;
+    font-size: .85rem;
+    color: #4b5563; /* gris suave del resto de la UI */
+  }
+
+  /* estado deshabilitado (mientras hace PATCH/DELETE) */
+  &.mat-disabled {
+    opacity: .55;
+    pointer-events: none;
+  }
+
+  /* Colores de marca (MDC Switch tokens) */
+  .mdc-switch {
+    /* seleccionado (ON) */
+    --mdc-switch-selected-track-color: #0F69C4;
+    --mdc-switch-selected-handle-color: #ffffff;
+    --mdc-switch-selected-icon-color: #ffffff;
+    --mdc-switch-selected-focus-state-layer-color: #2f6fea33;
+    --mdc-switch-selected-hover-state-layer-color: #2f6fea1a;
+    --mdc-switch-selected-pressed-state-layer-color: #2f6fea33;
+
+
+    /* no seleccionado (OFF) */
+    --mdc-switch-unselected-track-color: #cfd4dc;
+    --mdc-switch-unselected-handle-color: #ffffff;
+    --mdc-switch-unselected-icon-color: #9aa4b2;
+    --mdc-switch-unselected-focus-state-layer-color: #00000012;
+    --mdc-switch-unselected-hover-state-layer-color: #0000000a;
+    --mdc-switch-unselected-pressed-state-layer-color: #00000012;
+  }
+
+  /* tamaño un pelín más compacto */
+  .mdc-switch { 
+  transform: scale(0.95);
+  height: 20px !important;
+  }
+}
+
+/* ===== Por si en algún entorno usas el slide-toggle legacy (pre-MDC) ===== */
+:host ::ng-deep .mat-slide-toggle:not(.mdc-switch) {
+  &.mat-checked .mat-slide-toggle-bar { background-color: #2f6fea; }
+  &.mat-checked .mat-slide-toggle-thumb { background-color: #ffffff; }
+}
+
+
+/* Contenedor del slide-toggle a 40px (alineación del layout) */
+:host ::ng-deep .mat-slide-toggle.switch-40 {
+  height: 29px !important;                 /* alto del contenedor */
+  display: inline-flex;
+  align-items: center;          /* centra verticalmente la palanca */
+}
+
+/* Escala la palanca hasta ~40px de alto (base ~32px → 40/32 = 1.25) */
+:host ::ng-deep .mat-slide-toggle.switch-40 .mdc-switch {
+  transform-origin: left center;
+  transform: scale(1.25);
+}
+
+/* ===== Zebra en la tabla (una fila con sombreado, la siguiente sin) ===== */
+
+/* Base: deja el chip neutro y el borde sutil */
+.table-clean tbody tr .row-chip {
+  background: #ffffff;             /* fila sin sombreado */
+  transition: background .15s ease, box-shadow .15s ease;
+}
+
+/* Fila 1,3,5,... con sombreado azul suave */
+.table-clean tbody tr:nth-child(odd) .row-chip {
+  background: #CFE1F3;             /* tu azul suave */
+}
+
+/* Hover diferenciado para cada tipo de fila */
+.table-clean tbody tr:nth-child(odd) .row-chip:hover {
+  background: #dbe9ff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.table-clean tbody tr:nth-child(even) .row-chip:hover {
+  background: #f6fafe;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}

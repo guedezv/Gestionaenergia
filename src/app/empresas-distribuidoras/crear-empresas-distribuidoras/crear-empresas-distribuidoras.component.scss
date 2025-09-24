@@ -1,0 +1,96 @@
+/* ===== Layout base ===== */
+.layout { display: flex; flex-direction: column; height: 100vh; }
+.layout-main { display: flex; flex: 1; }
+
+/* ===== Página crear ===== */
+.crear-empresa-dist {
+  padding: 2rem;
+  width: 60%;
+
+  h2 {
+    font-family: Roboto, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    color: #111;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 1rem;
+  }
+
+  form {
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 2 columnas */
+      gap: 1rem 1.25rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+
+      label {
+        font-family: Roboto, Arial, sans-serif;
+        font-weight: 600;
+        font-size: 13px;
+        color: #373737;
+      }
+
+      .form-control {
+        height: 41px;
+        border: 1px solid #000000DE;
+        border-radius: 0;
+        padding: 0 10px;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 16px;
+        color: #4D4D4D;
+
+        &[multiple] {
+          height: auto;
+          min-height: 120px;
+          padding: 8px 10px;
+        }
+      }
+
+      .hint {
+        color: #6b7280;
+        font-size: 12px;
+        margin-top: .25rem;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      gap: .5rem;
+      justify-content: flex-end;
+      margin-top: 1.25rem;
+
+      .btn {
+        align-items: center;
+        gap: .6rem;
+        height: 40px;
+        border-radius: 0;
+        padding: 0 1rem;
+        font-weight: 600;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 14px;
+        cursor: pointer;
+        border: 1px solid transparent;
+      }
+
+      .btn-primary {
+        background: #0F69C4;
+        border-color: #0F69C4;
+        color: #fff;
+      }
+
+      .btn-secondary {
+        background: transparent;
+        border-color: #0F69C4;
+        color: #0F69C4;
+      }
+    }
+  }
+}
