@@ -52,7 +52,7 @@ export class RolesService {
     );
   }
 
-  /** RENOMBRAR (PUT /roles/{id}) – body { Name } */
+  /** RENOBRAR (PUT /roles/{id}) – body { Name } */
   renameRole(id: string | number, newName: string): Observable<Rol> {
     return this.http
       .put<any>(`${this.baseUrl}/${id}`, { Name: newName }, this.authHeaders())
