@@ -126,35 +126,41 @@ onToggleEstado(srv: Servicio, nuevoValor: boolean): void {
 
 
   /** Carga desde el backend; si falla intenta dejar un mensaje amigable */
-  private cargarServicios(instId: number | null, texto?: string): void {
-    this.loading = true;
-    this.error = '';
+private cargarServicios(instId: number | null, texto?: string): void {
+  this.loading = true;
+  this.error = '';
 
-    const opts = instId != null ? { InstitucionId: instId } : undefined;
+  const opts = instId != null ? { InstitucionId: instId } : undefined;
 
-    this.serviciosService.getServiciosDeUsuarioActual(1, 200, opts).subscribe({
-      next: (lista) => {
-        // filtro por texto (client-side) solo después de traer del backend
-        const q = this.normalize(texto ?? '');
-        this.servicios = !q
-          ? lista
-          : lista.filter(s => this.normalize(s?.Nombre ?? '').includes(q));
+  console.log('🔄 Llamando a getServiciosDeUsuarioActual con:', opts);
 
-        // paginación
-        this.paginaActual = 1;
-        this.actualizarPaginacion();
+  this.serviciosService.getServiciosDeUsuarioActual(1, 200, opts).subscribe({
+    next: (lista) => {
+      console.log('✅ Respuesta del backend:', lista); // <-- LOG BACKEND
 
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('[Servicios] GET falló', err);
-        this.error = this.humanizarError(err);
-        this.servicios = [];
-        this.serviciosPaginados = [];
-        this.loading = false;
-      }
-    });
-  }
+      const q = this.normalize(texto ?? '');
+
+      this.servicios = !q
+        ? lista
+        : lista.filter(s => this.normalize(s?.Nombre ?? '').includes(q));
+
+      console.log('📋 Lista filtrada (frontend):', this.servicios); // <-- LOG FILTRADA
+
+      this.paginaActual = 1;
+      this.actualizarPaginacion();
+
+      this.loading = false;
+    },
+    error: (err) => {
+      console.error('[Servicios] ❌ Error en GET:', err);
+      this.error = this.humanizarError(err);
+      this.servicios = [];
+      this.serviciosPaginados = [];
+      this.loading = false;
+    }
+  });
+}
+
 
   actualizarPaginacion(): void {
     const total = this.servicios.length;

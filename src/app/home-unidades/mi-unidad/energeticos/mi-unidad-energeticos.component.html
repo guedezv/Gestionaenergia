@@ -6,17 +6,24 @@
       <app-sidebar></app-sidebar>
     </div>
 
+    <!-- ✅ Solo una content-container -->
     <div class="content-container miu energeticos">
-      <!-- Título -->
+      <app-breadcrumb
+        [items]="[
+          { label: 'Home', url: '/home-unidades' },
+          { label: 'Mi Unidad', url: '/home-unidades/mi-unidad/' + id },
+          { label: 'Energéticos', url: '' }
+        ]">
+      </app-breadcrumb>
+
       <h5 class="titulo mb-3">Energéticos</h5>
 
-      <!-- Chip contextual (opcional) -->
       <div class="chip mb-3" *ngIf="divisionId">
         <span class="chip-icon">i</span>
         <span class="chip-text">División: {{ divisionId }}</span>
       </div>
 
-      <!-- ===== NAV Mi Unidad (igual al resto) ===== -->
+      <!-- ===== NAV Mi Unidad ===== -->
       <ul class="miu-nav">
         <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'informacion-general']">
@@ -24,7 +31,7 @@
             <span class="lbl">Información General</span>
           </a>
         </li>
-        <li class="active">
+        <li routerLinkActive="active">
           <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'energeticos']">
             <span class="ico" aria-hidden="true"></span>
             <span class="lbl">Energéticos</span>
@@ -43,21 +50,15 @@
           </a>
         </li>
       </ul>
-      <!-- ===== /NAV ===== -->
 
-      <!-- ===== PANEL ===== -->
+      <!-- ===== PANEL ENERGÉTICOS ===== -->
       <div class="panel">
         <!-- Filtros -->
         <div class="filter-block">
           <label class="filter-label">Filtrar por nombre</label>
           <div class="filter-line">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Ingresar nombre"
-              [(ngModel)]="q"
-              (keyup.enter)="aplicarFiltro()"
-            />
+            <input type="text" class="form-control" placeholder="Ingresar nombre"
+                   [(ngModel)]="q" (keyup.enter)="aplicarFiltro()" />
             <button class="btn btn-primary btn-filter" (click)="aplicarFiltro()">
               Filtrar
               <img src="/../icono-btn-filtrar.svg" alt="Icono de filtro" class="btn-icon">
@@ -74,7 +75,7 @@
         </div>
         <hr class="separator" />
 
-        <!-- Tabla / lista -->
+        <!-- Lista -->
         <table class="table table-clean zebra">
           <tbody>
             <tr *ngFor="let e of energeticosPaginados(); let i = index" [class.alt]="i % 2 === 0">
@@ -84,18 +85,15 @@
                     <span class="ico-square" aria-hidden="true"></span>
                     <span class="txt">{{ e.Nombre }}</span>
                   </div>
-
                   <div class="col col-fuente">
                     {{ e.Nombre }}
                   </div>
-
                   <div class="col col-switch">
                     <label class="switch" [attr.aria-label]="toggleAria(e)">
                       <input type="checkbox" [checked]="e.Active" disabled />
                       <span class="slider"></span>
                     </label>
                   </div>
-
                   <div class="col col-actions">
                     <button class="btn btn-sm btn-edit" *ngIf="e.PermiteMedidor" disabled>
                       Medidores
@@ -114,13 +112,12 @@
           </tbody>
         </table>
 
-        <!-- Paginación (client-side) -->
+        <!-- Paginación -->
         <nav *ngIf="totalPages() > 1" class="paginacion">
           <ul class="pagination">
             <li class="page-item" [class.disabled]="page() === 1">
               <button class="page-link" (click)="cambiarPagina(page() - 1)">‹</button>
             </li>
-
             <li
               class="page-item"
               *ngFor="let _ of [].constructor(totalPages()); let i = index"
@@ -129,14 +126,13 @@
                 {{ i + 1 }}
               </button>
             </li>
-
             <li class="page-item" [class.disabled]="page() === totalPages()">
               <button class="page-link" (click)="cambiarPagina(page() + 1)">›</button>
             </li>
           </ul>
         </nav>
 
-        <!-- Acciones inferiores -->
+        <!-- Acción inferior -->
         <div class="bottom-actions">
           <button class="btn btn-secondary" (click)="volver()">Volver</button>
         </div>

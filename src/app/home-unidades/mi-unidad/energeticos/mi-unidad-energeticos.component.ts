@@ -13,6 +13,7 @@ import {
   MiUnidadEnergeticosService,
   Energetico
 } from '../../../services/mi-unidad-energeticos.service';
+import { BreadcrumbComponent } from '../../../shared/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-mi-unidad-energeticos',
@@ -24,13 +25,15 @@ import {
     RouterLinkActive,
     HeaderComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    BreadcrumbComponent
   ],
   templateUrl: './mi-unidad-energeticos.component.html',
   styleUrls: ['./mi-unidad-energeticos.component.scss']
 })
 export class MiUnidadEnergeticosComponent implements OnInit {
   divisionId = 0;
+  id = 0; // 👈 declaramos, pero la llenamos en ngOnInit()
 
   // Filtro (texto libre por nombre)
   q = '';
@@ -72,8 +75,15 @@ export class MiUnidadEnergeticosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // ✅ aquí ya puedes usar this.route
     this.divisionId = Number(this.route.snapshot.paramMap.get('id') ?? 0);
+    this.id = this.divisionId; // o usar otro param si es distinto
+
     this.cargar();
+  }
+
+  go(tab: 'informacion-general' | 'energeticos' | 'sistemas' | 'actualizacion-datos-unidad') {
+    this.router.navigate([`/home-unidades/mi-unidad/${this.id}/${tab}`]);
   }
 
   cargar(): void {

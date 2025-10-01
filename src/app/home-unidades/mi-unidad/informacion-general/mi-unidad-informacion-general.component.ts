@@ -9,11 +9,12 @@ import { FooterComponent } from '../../../footer/footer.component';
 
 // Servicio
 import { MiUnidadInformacionGeneralService } from '../../../services/mi-unidad-informacion-general.service';
+import { BreadcrumbComponent } from '../../../shared/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-mi-unidad-informacion-general',
   standalone: true,
-  imports: [CommonModule, RouterLink, HeaderComponent, SidebarComponent, FooterComponent],
+  imports: [CommonModule, RouterLink, HeaderComponent, SidebarComponent, FooterComponent,BreadcrumbComponent],
   templateUrl: './mi-unidad-informacion-general.component.html',
   styleUrls: ['./mi-unidad-informacion-general.component.scss']
 })

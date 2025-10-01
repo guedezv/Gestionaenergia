@@ -6,7 +6,14 @@
       <app-sidebar></app-sidebar>
     </div>
 
+
     <div class="content-container">
+        <app-breadcrumb [items]="[
+    { label: 'Home', url: '/home-unidades' },
+    { label: 'Mi Unidad', url: '/home-unidades/mi-unidad/' + id },
+    
+
+  ]"></app-breadcrumb>
       <h5 class="titulo mb-3">Mi Unidad</h5>
 
       <div class="chip-direccion">

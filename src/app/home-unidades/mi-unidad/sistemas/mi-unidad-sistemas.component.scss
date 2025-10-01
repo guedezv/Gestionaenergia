@@ -20,3 +20,12 @@
   .panel.blanco{ border:1px solid #e5e7eb; border-radius:6px; background:#fff; padding:1rem; .placeholder{ color:#555; } }
   .btn.btn-secondary{ background:#fff; border:1px solid #0F69C4; border-radius:0; color:#0F69C4; font-weight:600; }
 }
+
+.contenido{
+  padding:0rem 2rem;
+}
+.breadcrumb {
+    padding-left: 24px;
+    padding-top: 10px;
+    border-bottom: 1px solid var(--Gris-20, #CCCCCC);
+}

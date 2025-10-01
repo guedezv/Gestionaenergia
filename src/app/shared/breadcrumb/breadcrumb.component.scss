@@ -1,0 +1,28 @@
+.breadcrumb-container {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin: 10px 0;
+  padding: 0 10px;
+  color: #555;
+}
+
+.breadcrumb-link {
+  text-decoration: underline;
+  color: #6c757d;
+  cursor: pointer;
+}
+
+.breadcrumb-link:hover {
+  color: #007bff;
+}
+
+.breadcrumb-current {
+  font-weight: bold;
+  color: #333;
+}
+
+.breadcrumb-separator {
+  margin: 0 5px;
+  color: #999;
+}
