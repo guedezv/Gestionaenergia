@@ -9,41 +9,78 @@
   padding: 2rem;
 }
 
-/* Título y chip */
+/* Título */
 .titulo {
   font-family: Roboto;
   font-weight: 500;
   font-size: 25px;
   color: #111111;
   line-height: 34px;
-}
-.chip {
-  display: inline-flex; align-items: center; gap: .5rem;
-  border: 1px solid #cfe0ff; background: #f6fbff; padding: .5rem .75rem; border-radius: .4rem;
-  .chip-icon { width: 18px; height: 18px; background: #0F69C4; color: #fff; border-radius: 50%;
-    display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
-  .chip-text { color: #1f3fa3; font-size: 14px; }
+  margin: 2rem 0px;
 }
 
-/* ===== NAV Mi Unidad (neutral) ===== */
-.miu-nav {
-  display: flex; gap: 2rem; padding: 0; margin: .5rem 0 1.25rem; list-style: none;
-
-  li a {
-    display: grid; place-items: center; gap: .35rem; text-decoration: none;
-    color: #1f3fa3; font-family: Roboto; font-size: 13px;
-  }
-
-  .ico {
-    width: 36px; height: 36px; border-radius: 50%;
-    border: 1px solid #0F69C4; display: inline-flex; align-items: center; justify-content: center;
+/* Chip cabecera unificado (igual que otros módulos) */
+.chip-direccion{
+      display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid #2196F3;
+    border-radius: 4px;
+    padding: 1rem 0.75rem;
     background: #fff;
-  }
+  .i{ width:18px; height:18px; border-radius:50%; background:#e6f0ff; color:#2f6fea; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; }
+  .texto{ font-size:14px; color:#202124; }
+}
 
-  li.active a .ico,
-  li.router-link-active a .ico { background: #0F69C4; border-color: #0F69C4; }
-  li.active a .lbl,
-  li.router-link-active a .lbl { color: #0F69C4; font-weight: 600; }
+/* ===== NAV Mi Unidad (iconos normal/hover, activo como hover) ===== */
+.miu-nav {
+  display: flex; gap: 1.25rem; padding: 0; margin: .5rem 0 1.25rem; list-style: none;
+
+  li {
+    border-radius: 6px;
+    transition: background .2s ease-in-out;
+
+    a {
+      display: grid; place-items: center; gap: .35rem; text-decoration: none;
+      color: #1f3fa3; font-family: Roboto; font-size: 13px;
+      padding: .4rem .6rem;
+    }
+
+    .icon-normal{
+      display: block;
+      width: auto !important;
+      height: 41% !important;
+      padding-bottom: 11px;
+      padding-top: 15px;
+    }
+    .icon-hover{
+      display: none;
+      width: 45px !important;
+      height: 45px !important;
+      padding-bottom: 4px;
+      padding-top: 5px;
+    }
+
+    &:hover {
+      .icon-normal { display: none; }
+      .icon-hover  { display: block; }
+    }
+
+    &.active,
+    &.router-link-active {
+
+      //a { color: #0F69C4; font-weight: 600; }
+
+      .icon-normal { display: none; }
+      .icon-hover  { display: block; }
+    }
+
+    .lbl {
+      font-size: 14px;
+      color: #0f69c4;
+      text-align: center;
+    }
+  }
 }
 
 /* ===== PANEL contenedor ===== */

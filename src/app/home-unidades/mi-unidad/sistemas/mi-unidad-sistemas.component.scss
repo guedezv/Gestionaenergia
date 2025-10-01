@@ -5,19 +5,80 @@
 
 .content-container{
   flex:1; background:#fff; padding:2rem; overflow-y:auto; border-left:1px solid #e5e7eb;
-  .titulo{ font-family:Roboto; font-weight:500; font-size:25px; color:#111; }
-  .chip-direccion{ display:inline-flex; align-items:center; gap:.5rem; border:1px solid #cfd4dc; border-radius:6px; padding:.5rem .75rem; background:#f8fbff;
+
+  .titulo{ font-family:Roboto; font-weight:500; font-size:25px; color:#111;margin: 2rem 0px; }
+
+  .chip-direccion{
+        display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid #2196F3;
+    border-radius: 4px;
+    padding: 1rem 0.75rem;
+    background: #fff;
     .i{ width:18px; height:18px; border-radius:50%; background:#e6f0ff; color:#2f6fea; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; }
     .texto{ font-size:14px; color:#202124; }
   }
-  .tabs{ list-style:none; padding:0; display:flex; gap:1.25rem; margin:1rem 0;
-    li{ display:flex; flex-direction:column; align-items:center; gap:.35rem; color:#1f3fa3; cursor:pointer; padding:.4rem .6rem; border-radius:6px;
-      &.active{ background:#e6f0ff; color:#0F69C4; font-weight:600; }
+
+  .tabs{
+    list-style:none; padding:0; display:flex; gap:1.25rem; margin:1rem 0;
+
+    li{
+      display:flex; flex-direction:column; align-items:center; gap:.35rem; color:#1f3fa3; cursor:pointer; padding:.4rem .6rem; border-radius:6px;
+      transition: background .2s ease-in-out;
+
+      /* iconos normal/hover (mismo patrón que en Mi Unidad / Energéticos / Información) */
+      .icon-normal{
+        display:block;
+        width:auto !important;
+        height:31% !important;
+        padding-bottom:14px;
+        padding-top:15px;
+      }
+      .icon-hover{
+        display:none;
+        width:45px !important;
+        height:45px !important;
+        padding-bottom:4px;
+        padding-top:5px;
+      }
+
+      /* hover: swap + fondo suave */
+      &:hover{
+        .icon-normal{ display:none; }
+        .icon-hover{ display:block; }
+      }
+
+      /* activo: mismo efecto que hover + color y peso */
+      &.active{
+        color:#0F69C4; font-weight:600;
+        .icon-normal{ display:none; }
+        .icon-hover{ display:block; }
+      }
+
+      span{
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: #333333;
+        font-family: Roboto;
+        font-size: 14px;
+        color: #0f69c4;
+        text-align: center;
+      }
+
+      /* compatibilidad con íconos de 22x22 si los necesitas */
       img{ width:22px; height:22px; }
     }
   }
+
   .separator{ border:0; border-top:1px solid #dcdcdc; margin:.75rem 0 1rem; }
-  .panel.blanco{ border:1px solid #e5e7eb; border-radius:6px; background:#fff; padding:1rem; .placeholder{ color:#555; } }
+
+  .panel.blanco{ border:1px solid #e5e7eb; border-radius:6px; background:#fff; padding:1rem; .placeholder{     display: block;
+    color: #373737;
+    font-weight: 400;
+    margin-bottom: 0.15rem;
+    font-family: "Roboto"; } }
+
   .btn.btn-secondary{ background:#fff; border:1px solid #0F69C4; border-radius:0; color:#0F69C4; font-weight:600; }
 }
 

@@ -1,8 +1,8 @@
+// src/app/home-unidades/home-unidades.component.ts
 import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+// ⬇️ Quitados: MatFormFieldModule, MatInputModule
 
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
@@ -21,8 +21,7 @@ type Unidad = { id: number; nombre: string };
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
+    // ⬇️ Quitados módulos de Angular Material para el input
     HeaderComponent,
     SidebarComponent,
     FooterComponent
