@@ -2,7 +2,7 @@
 .layout { display: flex; flex-direction: column; height: 100vh; }
 .layout-main { display: flex; flex: 1; }
 
-/* ===== Página crear ===== */
+/* ===== Página ===== */
 .crear-empresa-dist {
   padding: 2rem;
   width: 60%;
@@ -19,78 +19,65 @@
     margin-bottom: 1rem;
   }
 
-  form {
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr; /* 2 columnas */
-      gap: 1rem 1.25rem;
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 1.25rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: .25rem;
     }
 
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: .35rem;
-
-      label {
-        font-family: Roboto, Arial, sans-serif;
-        font-weight: 600;
-        font-size: 13px;
-        color: #373737;
-      }
-
-      .form-control {
-        height: 41px;
-        border: 1px solid #000000DE;
-        border-radius: 0;
-        padding: 0 10px;
-        font-family: Roboto, Arial, sans-serif;
-        font-size: 16px;
-        color: #4D4D4D;
-
-        &[multiple] {
-          height: auto;
-          min-height: 120px;
-          padding: 8px 10px;
-        }
-      }
-
-      .hint {
-        color: #6b7280;
-        font-size: 12px;
-        margin-top: .25rem;
-      }
+    .form-control,
+    .form-select {
+      height: 38px;
+      border: 1px solid #000000DE;
+      border-radius: 0;
+      padding: 0 10px;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+      color: #4D4D4D;
     }
 
-    .buttons {
-      display: flex;
-      gap: .5rem;
-      justify-content: flex-end;
-      margin-top: 1.25rem;
-
-      .btn {
-        align-items: center;
-        gap: .6rem;
-        height: 40px;
-        border-radius: 0;
-        padding: 0 1rem;
-        font-weight: 600;
-        font-family: Roboto, Arial, sans-serif;
-        font-size: 14px;
-        cursor: pointer;
-        border: 1px solid transparent;
-      }
-
-      .btn-primary {
-        background: #0F69C4;
-        border-color: #0F69C4;
-        color: #fff;
-      }
-
-      .btn-secondary {
-        background: transparent;
-        border-color: #0F69C4;
-        color: #0F69C4;
-      }
+    select[multiple] {
+      height: 120px;
+      padding: .4rem .5rem;
     }
+
+    .hint {
+      color: #6b7280; font-size: 12px; margin-top: 4px;
+    }
+  }
+
+  .checkbox-span {
+    grid-column: 1 / span 2;
+    align-items: center;
+
+    label { display: inline-flex; align-items: center; gap: .5rem; }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: .5rem;
+    margin-top: 1rem;
+
+    .btn {
+      height: 40px;
+      border-radius: 0;
+      padding: 0 1rem;
+      font-weight: 600;
+      font-family: Roboto, Arial, sans-serif;
+    }
+    .btn-primary { background: #0F69C4; border-color: #0F69C4; color: #fff; }
+    .btn-outline  { background: transparent; border: 1px solid #0F69C4; color: #0F69C4; }
   }
 }

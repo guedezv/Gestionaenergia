@@ -191,3 +191,67 @@
 
 /* Seguridad extra por si algún navegador mete ::marker */
 .paginacion .pages > li::marker { content: "" !important; }
+/* Scope del componente Home Unidades */
+.home-unidades {
+  width: 60%;
+
+  h2 {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 25px;
+    color: #111111;
+    line-height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Filtro (clonado de Instituciones) */
+  .filter-block {
+    margin-bottom: 1rem;
+
+    .filter-label {
+      font-family: Roboto;
+      font-weight: 700;
+      font-size: 16px;
+      color: #373737;
+      line-height: 34px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      margin-bottom: .25rem;
+    }
+
+    .filter-line {
+      display: flex;
+      justify-content: space-between;
+      gap: .20rem;
+      align-items: center;
+
+      .form-control {
+        height: 38px;
+        width: 100%;
+        border: 1px solid #000000DE;
+        border-radius: 0px;
+        padding: 0 10px;
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 16px;
+        color: #111111;
+        line-height: 34px;
+      }
+
+      .form-control::placeholder {
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 16px;
+        color: #4D4D4D;
+        line-height: 34px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

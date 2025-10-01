@@ -14,16 +14,16 @@
       <div *ngIf="!loading && error" class="alert alert-danger">{{ error }}</div>
 
       <form *ngIf="!loading" (ngSubmit)="guardar()">
-        <div class="grid">
+        <div class="grid-2">
           <!-- Nombre -->
           <div class="field">
             <label>Nombre</label>
             <input
               type="text"
               class="form-control"
-              [(ngModel)]="nombre"
+              [(ngModel)]="form.Nombre"
               name="Nombre"
-              placeholder="Asignar nombres"
+              placeholder="Asignar nombre"
               required
             />
           </div>
@@ -32,8 +32,8 @@
           <div class="field">
             <label>Energético</label>
             <select
-              class="form-control"
-              [(ngModel)]="energeticoId"
+              class="form-select"
+              [(ngModel)]="form.EnergeticoId"
               name="EnergeticoId"
               required
             >
@@ -42,41 +42,47 @@
             </select>
           </div>
 
-          <!-- Región (para cargar comunas) -->
+          <!-- Regiones (multi) -->
           <div class="field">
             <label>Regiones</label>
             <select
-              class="form-control"
-              [(ngModel)]="regionId"
-              name="RegionId"
-              (ngModelChange)="onRegionChange()"
+              multiple
+              class="form-select"
+              [(ngModel)]="form.RegionIds"
+              name="RegionIds"
+              (change)="onRegionsChange()"
             >
-              <option [ngValue]="null">Seleccionar una o más regiones</option>
               <option *ngFor="let r of regiones" [ngValue]="r.Id">{{ r.Nombre }}</option>
             </select>
+            <small class="hint">Selecciona una o más regiones para filtrar comunas.</small>
           </div>
 
           <!-- Comunas (multi) -->
           <div class="field">
             <label>Comunas</label>
             <select
-              class="form-control"
               multiple
-              [(ngModel)]="comunaIds"
+              class="form-select"
+              [(ngModel)]="form.ComunaIds"
               name="ComunaIds"
-              [disabled]="!regionId"
+              required
             >
-              <option *ngFor="let c of comunas" [ngValue]="c.Id">{{ c.Nombre }}</option>
+              <option *ngFor="let c of comunasDisponibles" [ngValue]="c.Id">{{ c.Nombre }}</option>
             </select>
-            <small class="hint" *ngIf="regionId && comunas.length === 0">
-              No hay comunas para la región seleccionada.
-            </small>
+          </div>
+
+          <!-- Activo -->
+          <div class="field checkbox-span">
+            <label>
+              <input type="checkbox" [(ngModel)]="form.Active" name="Active" />
+              Activo
+            </label>
           </div>
         </div>
 
         <div class="buttons">
           <button class="btn btn-primary" type="submit" [disabled]="saving">Guardar</button>
-          <button class="btn btn-secondary" type="button" (click)="volver()">Volver</button>
+          <button class="btn btn-outline" type="button" (click)="volver()">Volver</button>
         </div>
       </form>
     </div>

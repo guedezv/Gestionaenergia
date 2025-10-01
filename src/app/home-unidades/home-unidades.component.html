@@ -20,10 +20,25 @@
             <label class="filtro-label">Filtrar por nombre</label>
           </div>
           <div class="col-12 col-sm-6 col-lg-4 pt-3">
-            <mat-form-field appearance="outline" class="w-100">
-              <mat-label>Nombre</mat-label>
-              <input matInput [formControl]="filtroCtrl" placeholder="Buscar..." />
-            </mat-form-field>
+           <!-- src/app/home-unidades/home-unidades.component.html -->
+<div class="home-unidades">
+  <div class="filter-block">
+
+    <div class="filter-line">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Ingresar nombre"
+        [formControl]="filtroCtrl"
+        name="filtroNombre"
+      />
+    </div>
+  </div>
+
+  <!-- ...el resto de tu template tal como lo tenías.... -->
+</div>
+
+
           </div>
         </div>
 

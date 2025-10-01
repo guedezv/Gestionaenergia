@@ -10,25 +10,45 @@
       <h5 class="titulo mb-3">Actualización Datos Unidad</h5>
 
       <div class="chip-direccion">
-        <span class="i">i</span>
-        <span class="texto">, Nro. S/N, Complejo, La Serena, Región de Coquimbo (Biblioteca de la Serena - Juan José Latorre 782, La Serena)</span>
+        <img src="/../icono-informacion-unidadaes.svg" alt="Icono de filtro" class="btn-icon">
+        <span class="texto">---</span>
       </div>
 
       <ul class="tabs">
-        <li (click)="go('informacion-general')"><img src="/assets/icons/info.svg"><span>Información General</span></li>
-        <li (click)="go('energeticos')"><img src="/assets/icons/bolt.svg"><span>Energéticos</span></li>
-        <li (click)="go('sistemas')"><img src="/assets/icons/cogs.svg"><span>Sistemas</span></li>
-        <li class="active"><img src="/assets/icons/update.svg"><span>Actualización Datos Unidad</span></li>
+        <li (click)="go('informacion-general')">
+          <!-- patrón normal/hover como en 'Mi Unidad' -->
+          <img class="icon-normal" src="/icono-instituciones.svg" alt="Información General">
+          <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Información General">
+          <span>Información General</span>
+        </li>
+
+        <li (click)="go('energeticos')">
+          <img class="icon-normal" src="/icono-servicios.svg" alt="Energéticos">
+          <img class="icon-hover"  src="/icono-servicios-hover.svg" alt="Energéticos">
+          <span>Energéticos</span>
+        </li>
+
+        <li (click)="go('sistemas')">
+          <img class="icon-normal" src="/icono-inmuebles.svg" alt="Sistemas">
+          <img class="icon-hover"  src="/icono-inmuebles-hover.svg" alt="Sistemas">
+          <span>Sistemas</span>
+        </li>
+
+        <li class="active">
+          <img class="icon-normal" src="/icono-instituciones.svg" alt="Actualización Datos Unidad">
+          <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Actualización Datos Unidad">
+          <span>Actualización Datos Unidad</span>
+        </li>
       </ul>
 
       <hr class="separator" />
 
       <div class="panel blanco">
-        <p class="placeholder">Pantalla de actualización (pendiente de endpoints).</p>
+        <p class="placeholder">Pantalla de actualización de datos de Unidad</p>
       </div>
 
       <div class="acciones mt-3">
-        <a class="btn btn-secondary" [routerLink]="['/home-unidades/mi-unidad', id]">Volver</a>
+      <!--<a class="btn btn-secondary" [routerLink]="['/home-unidades/mi-unidad', id]">Volver</a>-->
       </div>
     </div>
   </div>

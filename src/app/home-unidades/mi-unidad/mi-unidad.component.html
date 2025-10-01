@@ -9,28 +9,30 @@
     <div class="content-container">
       <h5 class="titulo mb-3">Mi Unidad</h5>
 
-      <div class="chip-direccion">
-        <span class="i">M</span>
-        <span class="texto">
-          , Nro. S/N, Complejo, La Serena, Región de Coquimbo (Biblioteca de la Serena - Juan José Latorre 782, La Serena)
-        </span>
-      </div>
 
       <ul class="tabs">
         <li (click)="go('informacion-general')">
-          <img src="/assets/icons/info.svg" alt="">
+          <!-- patrón normal/hover como 'Configuración' -->
+          <img class="icon-normal" src="/icono-instituciones.svg" alt="Información General">
+          <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Información General">
           <span>Información General</span>
         </li>
+
         <li (click)="go('energeticos')">
-          <img src="/assets/icons/bolt.svg" alt="">
+          <img class="icon-normal" src="/icono-servicios.svg" alt="Energéticos">
+          <img class="icon-hover"  src="/icono-servicios-hover.svg" alt="Energéticos">
           <span>Energéticos</span>
         </li>
+
         <li (click)="go('sistemas')">
-          <img src="/assets/icons/cogs.svg" alt="">
+          <img class="icon-normal" src="/icono-inmuebles.svg" alt="Sistemas">
+          <img class="icon-hover"  src="/icono-inmuebles-hover.svg" alt="Sistemas">
           <span>Sistemas</span>
         </li>
+
         <li (click)="go('actualizacion-datos-unidad')">
-          <img src="/assets/icons/update.svg" alt="">
+          <img class="icon-normal" src="/icono-instituciones.svg" alt="Actualización Datos Unidad">
+          <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Actualización Datos Unidad">
           <span>Actualización Datos Unidad</span>
         </li>
       </ul>
@@ -38,7 +40,7 @@
       <hr class="separator" />
 
       <div class="panel blanco">
-        <p>Selecciona una pestaña para ver el detalle.</p>
+        <p>Seleccione para ver el detalle.</p>
       </div>
     </div>
   </div>

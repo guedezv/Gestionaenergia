@@ -11,26 +11,34 @@
 
       <!-- chip cabecera -->
       <div class="chip-direccion">
-        <span class="i">i</span>
+        <img src="/../icono-informacion-unidadaes.svg" alt="Icono de filtro" class="btn-icon">
         <span class="texto">{{ direccion.DireccionCompleta || '—' }}</span>
       </div>
 
       <!-- tabs -->
       <ul class="tabs">
         <li class="active" (click)="go('informacion-general')">
-          <img src="/assets/icons/info.svg" alt="">
+          <!-- patrón normal/hover -->
+          <img class="icon-normal" src="/icono-instituciones.svg" alt="Información General">
+          <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Información General">
           <span>Información General</span>
         </li>
+
         <li (click)="go('energeticos')">
-          <img src="/assets/icons/bolt.svg" alt="">
+          <img class="icon-normal" src="/icono-servicios.svg" alt="Energéticos">
+          <img class="icon-hover"  src="/icono-servicios-hover.svg" alt="Energéticos">
           <span>Energéticos</span>
         </li>
+
         <li (click)="go('sistemas')">
-          <img src="/assets/icons/cogs.svg" alt="">
+          <img class="icon-normal" src="/icono-inmuebles.svg" alt="Sistemas">
+          <img class="icon-hover"  src="/icono-inmuebles-hover.svg" alt="Sistemas">
           <span>Sistemas</span>
         </li>
+
         <li (click)="go('actualizacion-datos-unidad')">
-          <img src="/assets/icons/update.svg" alt="">
+          <img class="icon-normal" src="/icono-instituciones.svg" alt="Actualización Datos Unidad">
+          <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Actualización Datos Unidad">
           <span>Actualización Datos Unidad</span>
         </li>
       </ul>
@@ -61,7 +69,7 @@
       </section>
 
       <div class="acciones mt-3">
-        <a class="btn btn-secondary" [routerLink]="['/home-unidades/mi-unidad', id]">Volver</a>
+        <!--<a class="btn btn-secondary" [routerLink]="['/home-unidades/mi-unidad', id]">Volver</a>-->
       </div>
     </div>
   </div>
