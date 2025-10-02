@@ -20,4 +20,25 @@ import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
 })
 export class AppComponent {
   title = 'tu-app';
+  fontSize = 100; // porcentaje
+  contrasteAlto = false;
+
+  aumentarTexto() {
+    if (this.fontSize < 150) {
+      this.fontSize += 10;
+      document.documentElement.style.fontSize = `${this.fontSize}%`;
+    }
+  }
+
+  disminuirTexto() {
+    if (this.fontSize > 70) {
+      this.fontSize -= 10;
+      document.documentElement.style.fontSize = `${this.fontSize}%`;
+    }
+  }
+
+  toggleContraste() {
+    this.contrasteAlto = !this.contrasteAlto;
+    document.body.classList.toggle('alto-contraste', this.contrasteAlto);
+  }
 }

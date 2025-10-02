@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
@@ -14,6 +14,7 @@ import {
   Energetico
 } from '../../../services/mi-unidad-energeticos.service';
 import { BreadcrumbComponent } from '../../../shared/breadcrumb/breadcrumb.component';
+import { MiUnidadInformacionGeneralService } from '../../../services/mi-unidad-informacion-general.service';
 
 @Component({
   selector: 'app-mi-unidad-energeticos',
@@ -37,7 +38,10 @@ export class MiUnidadEnergeticosComponent implements OnInit {
 
   // Filtro (texto libre por nombre)
   q = '';
-
+  private infoSrv = inject(MiUnidadInformacionGeneralService);
+    direccion = {
+    Calle: '—', Numero: '—', RegionId: 0, ProvinciaId: 0, ComunaId: 0, DireccionCompleta: ''
+  };
   // Señales para manejar datos y paginación client-side (el endpoint no pagina)
   private _all = signal<Energetico[]>([]);
   pageSize = signal<number>(10);
@@ -72,7 +76,9 @@ export class MiUnidadEnergeticosComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private srv: MiUnidadEnergeticosService
-  ) {}
+  ) {
+
+  }
 
   ngOnInit(): void {
     // ✅ aquí ya puedes usar this.route
@@ -80,6 +86,12 @@ export class MiUnidadEnergeticosComponent implements OnInit {
     this.id = this.divisionId; // o usar otro param si es distinto
 
     this.cargar();
+        if (this.id > 0) {
+      this.infoSrv.getDireccionById(this.id).subscribe({
+        next: d => this.direccion = d,
+        error: e => console.error('[InformacionGeneral] error:', e)
+      });
+    }
   }
 
   go(tab: 'informacion-general' | 'energeticos' | 'sistemas' | 'actualizacion-datos-unidad') {
@@ -124,4 +136,26 @@ export class MiUnidadEnergeticosComponent implements OnInit {
   toggleAria(e: Energetico) {
     return e.Active ? 'Activo' : 'Inactivo';
   }
+    fontSize = 100; // porcentaje
+  contrasteAlto = false;
+
+  aumentarTexto() {
+    if (this.fontSize < 150) {
+      this.fontSize += 10;
+      document.documentElement.style.fontSize = `${this.fontSize}%`;
+    }
+  }
+
+  disminuirTexto() {
+    if (this.fontSize > 70) {
+      this.fontSize -= 10;
+      document.documentElement.style.fontSize = `${this.fontSize}%`;
+    }
+  }
+
+  toggleContraste() {
+    this.contrasteAlto = !this.contrasteAlto;
+    document.body.classList.toggle('alto-contraste', this.contrasteAlto);
+  }
 }
+

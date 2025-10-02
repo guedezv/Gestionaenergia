@@ -8,157 +8,156 @@
 
     <!-- ✅ Solo una content-container -->
     <div class="content-container miu energeticos">
-      <app-breadcrumb
-        [items]="[
-          { label: 'Home', url: '/home-unidades' },
-          { label: 'Mi Unidad', url: '/home-unidades/mi-unidad/' + id },
-          { label: 'Energéticos', url: '' }
-        ]">
-      </app-breadcrumb>
+      <div class="breadcrumb">
+        <div class="breadcrumb-contenido">
+          <app-breadcrumb
+            [items]="[
+              { label: 'Home', url: '/home-unidades' },
+              { label: 'Mi Unidad', url: '/home-unidades/mi-unidad/' + id },
+              { label: 'Energéticos', url: '' }
+            ]">
+          </app-breadcrumb>
+        </div>
+        <div class="accesibilidad-controles">
+          <button (click)="toggleContraste()" title="Alto contraste">🌓</button>
+          <button (click)="disminuirTexto()" title="Reducir tamaño texto">A-</button>
+          <button (click)="aumentarTexto()" title="Aumentar tamaño texto">A+</button>
+        </div>
+        
 
-      <h5 class="titulo mb-3">Energéticos</h5>
-
-<<<<<<< HEAD
-      <div class="chip mb-3" *ngIf="divisionId">
-        <span class="chip-icon">i</span>
-        <span class="chip-text">División: {{ divisionId }}</span>
       </div>
+      <div class="contenido">
+          <h5 class="titulo mb-3">Energéticos</h5>
 
-      <!-- ===== NAV Mi Unidad ===== -->
-=======
-      <!-- Chip cabecera (mismo estilo que los otros módulos) -->
-      <div class="chip-direccion mb-3" *ngIf="divisionId">
-        <img src="/../icono-informacion-unidadaes.svg" alt="Icono de filtro" class="btn-icon">
-        <span class="texto">División: {{ divisionId }}</span>
-      </div>
-
-      <!-- ===== NAV Mi Unidad (con iconos normal/hover) ===== -->
->>>>>>> f708fc0c8542d8971312d4ea094d4cd4d3f3e999
-      <ul class="miu-nav">
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'informacion-general']">
-            <img class="icon-normal" src="/icono-instituciones.svg" alt="Información General" />
-            <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Información General" />
-            <span class="lbl">Información General</span>
-          </a>
-        </li>
-<<<<<<< HEAD
-        <li routerLinkActive="active">
-=======
-
-        <li class="active">
->>>>>>> f708fc0c8542d8971312d4ea094d4cd4d3f3e999
-          <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'energeticos']">
-            <img class="icon-normal" src="/icono-servicios.svg" alt="Energéticos" />
-            <img class="icon-hover"  src="/icono-servicios-hover.svg" alt="Energéticos" />
-            <span class="lbl">Energéticos</span>
-          </a>
-        </li>
-
-        <li routerLinkActive="active">
-          <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'sistemas']">
-            <img class="icon-normal" src="/icono-inmuebles.svg" alt="Sistemas" />
-            <img class="icon-hover"  src="/icono-inmuebles-hover.svg" alt="Sistemas" />
-            <span class="lbl">Sistemas</span>
-          </a>
-        </li>
-
-        <li routerLinkActive="active">
-          <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'actualizacion-datos-unidad']">
-            <img class="icon-normal" src="/icono-instituciones.svg" alt="Actualización Datos Unidad" />
-            <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Actualización Datos Unidad" />
-            <span class="lbl">Actualización Datos Unidad</span>
-          </a>
-        </li>
-      </ul>
-
-      <!-- ===== PANEL ENERGÉTICOS ===== -->
-      <div class="panel">
-        <!-- Filtros -->
-        <div class="filter-block">
-          <label class="filter-label">Filtrar por nombre</label>
-          <div class="filter-line">
-            <input type="text" class="form-control" placeholder="Ingresar nombre"
-                   [(ngModel)]="q" (keyup.enter)="aplicarFiltro()" />
-            <button class="btn btn-primary btn-filter" (click)="aplicarFiltro()">
-              Filtrar
-              <img src="/../icono-btn-filtrar.svg" alt="Icono de filtro" class="btn-icon">
-            </button>
+          <!-- Chip cabecera (mismo estilo que los otros módulos) -->
+          <div class="chip-direccion">
+          <img src="/../icono-informacion-unidadaes.svg" alt="Icono de filtro" class="btn-icon">
+            <span class="texto">{{ direccion.DireccionCompleta || '—' }}</span>
           </div>
-        </div>
 
-        <!-- Encabezados -->
-        <div class="header-row">
-          <span class="col-left">Energéticos</span>
-          <span class="col-mid">Fuente Energética</span>
-          <span class="col-mid">Encendido / Apagado</span>
-          <span class="col-right">Configurar</span>
-        </div>
-        <hr class="separator" />
-
-        <!-- Lista -->
-        <table class="table table-clean zebra">
-          <tbody>
-            <tr *ngFor="let e of energeticosPaginados(); let i = index" [class.alt]="i % 2 === 0">
-              <td>
-                <div class="row-chip">
-                  <div class="col col-nombre">
-                    <span class="ico-square" aria-hidden="true"></span>
-                    <span class="txt">{{ e.Nombre }}</span>
-                  </div>
-                  <div class="col col-fuente">
-                    {{ e.Nombre }}
-                  </div>
-                  <div class="col col-switch">
-                    <label class="switch" [attr.aria-label]="toggleAria(e)">
-                      <input type="checkbox" [checked]="e.Active" disabled />
-                      <span class="slider"></span>
-                    </label>
-                  </div>
-                  <div class="col col-actions">
-                    <button class="btn btn-sm btn-edit" *ngIf="e.PermiteMedidor" disabled>
-                      Medidores
-                    </button>
-                  </div>
-                </div>
-              </td>
-            </tr>
-
-            <tr *ngIf="!energeticosPaginados().length && !loading()">
-              <td class="empty">No hay energéticos para mostrar.</td>
-            </tr>
-            <tr *ngIf="loading()">
-              <td class="empty">Cargando...</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- Paginación -->
-        <nav *ngIf="totalPages() > 1" class="paginacion">
-          <ul class="pagination">
-            <li class="page-item" [class.disabled]="page() === 1">
-              <button class="page-link" (click)="cambiarPagina(page() - 1)">‹</button>
+          <!-- ===== NAV Mi Unidad (con iconos normal/hover) ===== -->
+          <ul class="miu-nav">
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+              <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'informacion-general']">
+                <img class="icon-normal" src="/icono-instituciones.svg" alt="Información General" />
+                <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Información General" />
+                <span class="lbl">Información General</span>
+              </a>
             </li>
-            <li
-              class="page-item"
-              *ngFor="let _ of [].constructor(totalPages()); let i = index"
-              [class.active]="page() === (i + 1)">
-              <button class="page-link" (click)="cambiarPagina(i + 1)">
-                {{ i + 1 }}
-              </button>
+
+            <li class="active">
+              <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'energeticos']">
+                <img class="icon-normal" src="/icono-servicios.svg" alt="Energéticos" />
+                <img class="icon-hover"  src="/icono-servicios-hover.svg" alt="Energéticos" />
+                <span class="lbl">Energéticos</span>
+              </a>
             </li>
-            <li class="page-item" [class.disabled]="page() === totalPages()">
-              <button class="page-link" (click)="cambiarPagina(page() + 1)">›</button>
+
+            <li routerLinkActive="active">
+              <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'sistemas']">
+                <img class="icon-normal" src="/icono-inmuebles.svg" alt="Sistemas" />
+                <img class="icon-hover"  src="/icono-inmuebles-hover.svg" alt="Sistemas" />
+                <span class="lbl">Sistemas</span>
+              </a>
+            </li>
+
+            <li routerLinkActive="active">
+              <a [routerLink]="['/home-unidades/mi-unidad', divisionId, 'actualizacion-datos-unidad']">
+                <img class="icon-normal" src="/icono-instituciones.svg" alt="Actualización Datos Unidad" />
+                <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Actualización Datos Unidad" />
+                <span class="lbl">Actualización Datos Unidad</span>
+              </a>
             </li>
           </ul>
-        </nav>
 
-        <!-- Acción inferior -->
-        <div class="bottom-actions">
-          <!--<button class="btn btn-secondary" (click)="volver()">Volver</button>-->
-        </div>
+          <!-- ===== PANEL ENERGÉTICOS ===== -->
+          <div class="panel">
+            <!-- Filtros -->
+            <div class="filter-block">
+              <label class="filter-label">Filtrar por nombre</label>
+              <div class="filter-line">
+                <input type="text" class="form-control" placeholder="Ingresar nombre"
+                      [(ngModel)]="q" (keyup.enter)="aplicarFiltro()" />
+                <button class="btn btn-primary btn-filter" (click)="aplicarFiltro()">
+                  Filtrar
+                  <img src="/../icono-btn-filtrar.svg" alt="Icono de filtro" class="btn-icon">
+                </button>
+              </div>
+            </div>
+
+            <!-- Encabezados -->
+            <div class="header-row">
+              <span class="col-left">Energéticos</span>
+              <span class="col-mid">Fuente Energética</span>
+              <span class="col-mid">Encendido / Apagado</span>
+              <span class="col-right">Configurar</span>
+            </div>
+            <hr class="separator" />
+
+            <!-- Lista -->
+            <table class="table table-clean zebra">
+              <tbody>
+                <tr *ngFor="let e of energeticosPaginados(); let i = index" [class.alt]="i % 2 === 0">
+                  <td>
+                    <div class="row-chip">
+                      <div class="col col-nombre">
+                        <span class="ico-square" aria-hidden="true"></span>
+                        <span class="txt">{{ e.Nombre }}</span>
+                      </div>
+                      <div class="col col-fuente">
+                        {{ e.Nombre }}
+                      </div>
+                      <div class="col col-switch">
+                        <label class="switch" [attr.aria-label]="toggleAria(e)">
+                          <input type="checkbox" [checked]="e.Active" disabled />
+                          <span class="slider"></span>
+                        </label>
+                      </div>
+                      <div class="col col-actions">
+                        <button class="btn btn-sm btn-edit" *ngIf="e.PermiteMedidor" disabled>
+                          Medidores
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr *ngIf="!energeticosPaginados().length && !loading()">
+                  <td class="empty">No hay energéticos para mostrar.</td>
+                </tr>
+                <tr *ngIf="loading()">
+                  <td class="empty">Cargando...</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Paginación -->
+            <nav *ngIf="totalPages() > 1" class="paginacion">
+              <ul class="pagination">
+                <li class="page-item" [class.disabled]="page() === 1">
+                  <button class="page-link" (click)="cambiarPagina(page() - 1)">‹</button>
+                </li>
+                <li
+                  class="page-item"
+                  *ngFor="let _ of [].constructor(totalPages()); let i = index"
+                  [class.active]="page() === (i + 1)">
+                  <button class="page-link" (click)="cambiarPagina(i + 1)">
+                    {{ i + 1 }}
+                  </button>
+                </li>
+                <li class="page-item" [class.disabled]="page() === totalPages()">
+                  <button class="page-link" (click)="cambiarPagina(page() + 1)">›</button>
+                </li>
+              </ul>
+            </nav>
+
+            <!-- Acción inferior -->
+            <div class="bottom-actions">
+              <!--<button class="btn btn-secondary" (click)="volver()">Volver</button>-->
+            </div>
+          </div>
+          <!-- ===== /PANEL ===== -->
       </div>
-      <!-- ===== /PANEL ===== -->
     </div>
   </div>
 

@@ -4,7 +4,7 @@
 .sidebar-container{ border-right:1px solid #e5e7eb; background:#f9fafb; }
 
 .content-container{
-  flex:1; background:#fff; padding:2rem; overflow-y:auto; border-left:1px solid #e5e7eb;
+  flex:1; background:#fff;  overflow-y:auto; border-left:1px solid #e5e7eb;
 
   .titulo{ font-family:Roboto; font-weight:500; font-size:25px; color:#111;margin: 2rem 0px; }
 
@@ -89,4 +89,106 @@
     padding-left: 24px;
     padding-top: 10px;
     border-bottom: 1px solid var(--Gris-20, #CCCCCC);
+}
+/* ===== NAV Mi Unidad (iconos normal/hover, activo como hover) ===== */
+.miu-nav {
+  display: flex; gap: 1.25rem; padding: 0; margin: .5rem 0 1.25rem; list-style: none;
+
+  li {
+    border-radius: 6px;
+    transition: background .2s ease-in-out;
+
+    a {
+      display: grid; place-items: center; gap: .35rem; text-decoration: none;
+      color: #1f3fa3; font-family: Roboto; font-size: 13px;
+      padding: .4rem .6rem;
+    }
+
+    .icon-normal{
+      display: block;
+      width: auto !important;
+      height: 41% !important;
+      padding-bottom: 11px;
+      padding-top: 15px;
+    }
+    .icon-hover{
+      display: none;
+      width: 45px !important;
+      height: 45px !important;
+      padding-bottom: 4px;
+      padding-top: 5px;
+    }
+
+    &:hover {
+      .icon-normal { display: none; }
+      .icon-hover  { display: block; }
+    }
+
+    &.active,
+    &.router-link-active {
+
+      //a { color: #0F69C4; font-weight: 600; }
+
+      .icon-normal { display: none; }
+      .icon-hover  { display: block; }
+    }
+
+    .lbl {
+      font-size: 14px;
+      color: #0f69c4;
+      text-align: center;
+    }
+  }
+}
+.contenido{
+  padding:0rem 2rem;
+}
+
+.breadcrumb {
+    padding-left: 24px;
+    padding-top: 10px;
+    border-bottom: 1px solid var(--Gris-20, #CCCCCC);
+      display: flex;
+  justify-content: space-between; /* uno a la izquierda, otro a la derecha */
+  align-items: center;
+  padding-left: 24px;
+  padding-top: 10px;
+  border-bottom: 1px solid #CCCCCC;
+}
+.accesibilidad-controles {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+  padding: 10px 24px;
+
+  button {
+    background: #fff;
+    border: 1px solid #999;
+    padding: 4px 8px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s;
+    filter: grayscale(100%);
+
+    &:hover {
+      background: #f0f0f0;
+    }
+  }
+}
+
+/* Modo alto contraste */
+body.alto-contraste {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+body.alto-contraste a,
+body.alto-contraste .lbl,
+body.alto-contraste .texto {
+  color: #00ffff !important;
+}
+
+body.alto-contraste img {
+  filter: invert(100%);
 }

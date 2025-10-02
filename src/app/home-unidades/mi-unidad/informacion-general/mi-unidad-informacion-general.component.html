@@ -7,75 +7,95 @@
     </div>
 
     <div class="content-container">
-              <app-breadcrumb [items]="[
-    { label: 'Home', url: '/home-unidades' },
-    { label: 'Mi Unidad', url: '/home-unidades/mi-unidad/' + id },
-    { label: 'Información general', url: '/home-unidades' },
+      <div class="breadcrumb">
+        <div class="breadcrumb-contenido">
+          <app-breadcrumb [items]="[
+          { label: 'Home', url: '/home-unidades' },
+          { label: 'Mi Unidad', url: '/home-unidades/mi-unidad/' + id },
+          { label: 'Información general', url: '/home-unidades' },]">
+          </app-breadcrumb>
+        </div>
+        <div class="accesibilidad-controles">
+          <button (click)="toggleContraste()" title="Alto contraste">🌓</button>
+          <button (click)="disminuirTexto()" title="Reducir tamaño texto">A-</button>
+          <button (click)="aumentarTexto()" title="Aumentar tamaño texto">A+</button>
+        </div>
+        
 
-  ]"></app-breadcrumb>
-      <h5 class="titulo mb-3">Información general</h5>
-
-      <!-- chip cabecera -->
-      <div class="chip-direccion">
-        <img src="/../icono-informacion-unidadaes.svg" alt="Icono de filtro" class="btn-icon">
-        <span class="texto">{{ direccion.DireccionCompleta || '—' }}</span>
       </div>
+      <div class="contenido">
+        <h5 class="titulo mb-3">Información general</h5>
 
-      <!-- tabs -->
-      <ul class="tabs">
-        <li class="active" (click)="go('informacion-general')">
-          <!-- patrón normal/hover -->
-          <img class="icon-normal" src="/icono-instituciones.svg" alt="Información General">
-          <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Información General">
-          <span>Información General</span>
-        </li>
-
-        <li (click)="go('energeticos')">
-          <img class="icon-normal" src="/icono-servicios.svg" alt="Energéticos">
-          <img class="icon-hover"  src="/icono-servicios-hover.svg" alt="Energéticos">
-          <span>Energéticos</span>
-        </li>
-
-        <li (click)="go('sistemas')">
-          <img class="icon-normal" src="/icono-inmuebles.svg" alt="Sistemas">
-          <img class="icon-hover"  src="/icono-inmuebles-hover.svg" alt="Sistemas">
-          <span>Sistemas</span>
-        </li>
-
-        <li (click)="go('actualizacion-datos-unidad')">
-          <img class="icon-normal" src="/icono-instituciones.svg" alt="Actualización Datos Unidad">
-          <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Actualización Datos Unidad">
-          <span>Actualización Datos Unidad</span>
-        </li>
-      </ul>
-
-      <hr class="separator" />
-
-      <!-- panel inmueble -->
-      <section class="panel">
-        <header>Inmueble</header>
-        <div class="grid">
-          <div><b>Dirección</b><div>{{ direccion.Calle || '—' }}</div></div>
-          <div><b>Nº</b><div>{{ direccion.Numero || '—' }}</div></div>
-          <div><b>Región</b><div>{{ direccion.RegionId || '—' }}</div></div>
-          <div><b>Provincia</b><div>{{ direccion.ProvinciaId || '—' }}</div></div>
-          <div><b>Comuna</b><div>{{ direccion.ComunaId || '—' }}</div></div>
-          <div><b>Tipo de inmueble</b><div>—</div></div>
+        <!-- chip cabecera -->
+        <div class="chip-direccion">
+          <img src="/../icono-informacion-unidadaes.svg" alt="Icono de filtro" class="btn-icon">
+          <span class="texto">{{ direccion.DireccionCompleta || '—' }}</span>
         </div>
-      </section>
 
-      <!-- panel unidad -->
-      <section class="panel mt-3">
-        <header>Mi Unidad</header>
-        <div class="grid">
-          <div><b>Ministerio</b><div>Ministerio de la Cultura, Artes y Patrimonio</div></div>
-          <div><b>Servicio</b><div>Servicio Nacional de Patrimonio Cultural</div></div>
-          <div class="span-2"><b>Dirección</b><div>{{ direccion.DireccionCompleta || '—' }}</div></div>
+        <!-- tabs -->
+        <ul class="miu-nav">
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+              <a [routerLink]="['/home-unidades/mi-unidad', id, 'informacion-general']">
+                <img class="icon-normal" src="/icono-instituciones.svg" alt="Información General" />
+                <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Información General" />
+                <span class="lbl">Información General</span>
+              </a>
+            </li>
+
+            <li routerLinkActive="active">
+              <a [routerLink]="['/home-unidades/mi-unidad', id, 'energeticos']">
+                <img class="icon-normal" src="/icono-servicios.svg" alt="Energéticos" />
+                <img class="icon-hover"  src="/icono-servicios-hover.svg" alt="Energéticos" />
+                <span class="lbl">Energéticos</span>
+              </a>
+            </li>
+
+            <li routerLinkActive="active">
+              <a [routerLink]="['/home-unidades/mi-unidad', id, 'sistemas']">
+                <img class="icon-normal" src="/icono-inmuebles.svg" alt="Sistemas" />
+                <img class="icon-hover"  src="/icono-inmuebles-hover.svg" alt="Sistemas" />
+                <span class="lbl">Sistemas</span>
+              </a>
+            </li>
+
+            <li routerLinkActive="active">
+              <a [routerLink]="['/home-unidades/mi-unidad', id, 'actualizacion-datos-unidad']">
+                <img class="icon-normal" src="/icono-instituciones.svg" alt="Actualización Datos Unidad" />
+                <img class="icon-hover"  src="/icono-instituciones-hover.svg" alt="Actualización Datos Unidad" />
+                <span class="lbl">Actualización Datos Unidad</span>
+              </a>
+            </li>
+          </ul>
+
+
+        <hr class="separator" />
+
+        <!-- panel inmueble -->
+        <section class="panel">
+          <header>Inmueble</header>
+          <div class="grid">
+            <div><b>Dirección</b><div>{{ direccion.Calle || '—' }}</div></div>
+            <div><b>Nº</b><div>{{ direccion.Numero || '—' }}</div></div>
+            <div><b>Región</b><div>{{ direccion.RegionId || '—' }}</div></div>
+            <div><b>Provincia</b><div>{{ direccion.ProvinciaId || '—' }}</div></div>
+            <div><b>Comuna</b><div>{{ direccion.ComunaId || '—' }}</div></div>
+            <div><b>Tipo de inmueble</b><div>—</div></div>
+          </div>
+        </section>
+
+        <!-- panel unidad -->
+        <section class="panel mt-3">
+          <header>Mi Unidad</header>
+          <div class="grid">
+            <div><b>Ministerio</b><div>Ministerio de la Cultura, Artes y Patrimonio</div></div>
+            <div><b>Servicio</b><div>Servicio Nacional de Patrimonio Cultural</div></div>
+            <div class="span-2"><b>Dirección</b><div>{{ direccion.DireccionCompleta || '—' }}</div></div>
+          </div>
+        </section>
+
+        <div class="acciones mt-3">
+          <!--<a class="btn btn-secondary" [routerLink]="['/home-unidades/mi-unidad', id]">Volver</a>-->
         </div>
-      </section>
-
-      <div class="acciones mt-3">
-        <!--<a class="btn btn-secondary" [routerLink]="['/home-unidades/mi-unidad', id]">Volver</a>-->
       </div>
     </div>
   </div>

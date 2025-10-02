@@ -17,3 +17,11 @@ html {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html {
+  font-size: 100%; // afectado por el component
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  font-size: 1rem; // equivalente a 16px
+}

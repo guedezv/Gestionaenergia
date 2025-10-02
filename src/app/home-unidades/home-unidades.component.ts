@@ -45,6 +45,7 @@ export class HomeUnidadesComponent {
     private homeSrv: HomeUnidadesService,
     private router: Router
   ) {
+    
     // filtro reactivo → recarga desde API y resetea a página 0
     toSignal(
       this.filtroCtrl.valueChanges.pipe(startWith(this.filtroCtrl.value), debounceTime(250)),
